@@ -5,6 +5,7 @@
 package chat.app.form;
 
 import chat.app.component.Item_people;
+import chat.app.swing.Scrollbar;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -21,13 +22,34 @@ public class Menu_Left extends javax.swing.JPanel {
         init();
     }
     public void init(){
-        MenuList.setLayout(new MigLayout("fillx","0[]0","1[]1"));
+        sp.setVerticalScrollBar(new Scrollbar());
+       
+        MenuList.setLayout(new MigLayout("fillx","0[]0","0[]0"));
         showpeople();
     }
     private void showpeople(){
-        for (int i = 0; i < 8; i++) {
+        MenuList.removeAll();
+        for (int i = 0; i < 20; i++) {
             MenuList.add(new Item_people("People "+i),"Wrap");
         }
+        MenuList.repaint();
+        MenuList.revalidate();
+    }
+    private void showgroup(){
+                MenuList.removeAll();
+        for (int i = 0; i < 5; i++) {
+            MenuList.add(new Item_people("Group "+i),"Wrap");
+        }
+                MenuList.repaint();
+        MenuList.revalidate();
+    }
+    private void showbox(){
+                MenuList.removeAll();
+        for (int i = 0; i < 2; i++) {
+            MenuList.add(new Item_people("Box "+i),"Wrap");
+        }
+                MenuList.repaint();
+        MenuList.revalidate();
     }
 
     /**
@@ -40,40 +62,53 @@ public class Menu_Left extends javax.swing.JPanel {
     private void initComponents() {
 
         menu = new javax.swing.JLayeredPane();
-        menuButton2 = new chat.app.component.MenuButton();
-        menuButton3 = new chat.app.component.MenuButton();
-        menuButton4 = new chat.app.component.MenuButton();
+        menumsg = new chat.app.component.MenuButton();
+        menugroup = new chat.app.component.MenuButton();
+        menubox = new chat.app.component.MenuButton();
+        sp = new javax.swing.JScrollPane();
         MenuList = new javax.swing.JLayeredPane();
 
         setBackground(new java.awt.Color(242, 242, 242));
 
         menu.setBackground(new java.awt.Color(229, 229, 229));
         menu.setOpaque(true);
-        menu.setLayout(new javax.swing.BoxLayout(menu, javax.swing.BoxLayout.LINE_AXIS));
+        menu.setLayout(new java.awt.GridLayout(1, 3));
 
-        menuButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chat/app/icon/message_selected.png"))); // NOI18N
-        menuButton2.addActionListener(new java.awt.event.ActionListener() {
+        menumsg.setIconselected(new javax.swing.ImageIcon(getClass().getResource("/chat/app/icon/message_selected.png"))); // NOI18N
+        menumsg.setIconsimple(new javax.swing.ImageIcon(getClass().getResource("/chat/app/icon/message.png"))); // NOI18N
+        menumsg.setSelected(true);
+        menumsg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuButton2ActionPerformed(evt);
+                menumsgActionPerformed(evt);
             }
         });
-        menu.add(menuButton2);
+        menu.add(menumsg);
 
-        menuButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chat/app/icon/group.png"))); // NOI18N
-        menuButton3.addActionListener(new java.awt.event.ActionListener() {
+        menugroup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chat/app/icon/group.png"))); // NOI18N
+        menugroup.setIconselected(new javax.swing.ImageIcon(getClass().getResource("/chat/app/icon/group_selected.png"))); // NOI18N
+        menugroup.setIconsimple(new javax.swing.ImageIcon(getClass().getResource("/chat/app/icon/group.png"))); // NOI18N
+        menugroup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuButton3ActionPerformed(evt);
+                menugroupActionPerformed(evt);
             }
         });
-        menu.add(menuButton3);
+        menu.add(menugroup);
 
-        menuButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chat/app/icon/box.png"))); // NOI18N
-        menuButton4.addActionListener(new java.awt.event.ActionListener() {
+        menubox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chat/app/icon/box.png"))); // NOI18N
+        menubox.setIconselected(new javax.swing.ImageIcon(getClass().getResource("/chat/app/icon/box_selected.png"))); // NOI18N
+        menubox.setIconsimple(new javax.swing.ImageIcon(getClass().getResource("/chat/app/icon/box.png"))); // NOI18N
+        menubox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuButton4ActionPerformed(evt);
+                menuboxActionPerformed(evt);
             }
         });
-        menu.add(menuButton4);
+        menu.add(menubox);
+
+        sp.setBackground(new java.awt.Color(242, 242, 242));
+        sp.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        MenuList.setBackground(new java.awt.Color(242, 242, 242));
+        MenuList.setOpaque(true);
 
         javax.swing.GroupLayout MenuListLayout = new javax.swing.GroupLayout(MenuList);
         MenuList.setLayout(MenuListLayout);
@@ -83,44 +118,71 @@ public class Menu_Left extends javax.swing.JPanel {
         );
         MenuListLayout.setVerticalGroup(
             MenuListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 629, Short.MAX_VALUE)
+            .addGap(0, 627, Short.MAX_VALUE)
         );
+
+        sp.setViewportView(MenuList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-            .addComponent(MenuList, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(sp)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(MenuList)
+                .addComponent(sp)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButton2ActionPerformed
+    private void menumsgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menumsgActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_menuButton2ActionPerformed
+        if(!menumsg.isSelected()){
+        menumsg.setSelected(true);
+        menugroup.setSelected(false);
+        menubox.setSelected(false);  
+        showpeople();
+        }
+        
+        
+    }//GEN-LAST:event_menumsgActionPerformed
 
-    private void menuButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButton3ActionPerformed
+    private void menugroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menugroupActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_menuButton3ActionPerformed
+        if(!menugroup.isSelected()){
+        menumsg.setSelected(false);
+        menugroup.setSelected(true);
+        menubox.setSelected(false);
+        showgroup();
+        }
+        
+    }//GEN-LAST:event_menugroupActionPerformed
 
-    private void menuButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButton4ActionPerformed
+    private void menuboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuboxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_menuButton4ActionPerformed
+        if(!menubox.isSelected()){
+        menumsg.setSelected(false);
+        menugroup.setSelected(false);
+        menubox.setSelected(true);
+        showbox();
+        }
+    }//GEN-LAST:event_menuboxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane MenuList;
     private javax.swing.JLayeredPane menu;
-    private chat.app.component.MenuButton menuButton2;
-    private chat.app.component.MenuButton menuButton3;
-    private chat.app.component.MenuButton menuButton4;
+    private chat.app.component.MenuButton menubox;
+    private chat.app.component.MenuButton menugroup;
+    private chat.app.component.MenuButton menumsg;
+    private javax.swing.JScrollPane sp;
     // End of variables declaration//GEN-END:variables
 }

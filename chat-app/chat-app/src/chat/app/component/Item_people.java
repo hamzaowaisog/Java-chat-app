@@ -4,6 +4,10 @@
  */
 package chat.app.component;
 
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 /**
  *
  * @author MIR HAMZA
@@ -16,7 +20,27 @@ public class Item_people extends javax.swing.JPanel {
     public Item_people(String Name) {
         initComponents();
         name.setText(Name);
-        
+        init();
+    }
+    
+    private void init(){
+        addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                repaint();
+                setBackground(new Color(230,230,230));
+                repaint();
+                
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                repaint();
+                setBackground(new Color(242,242,242));
+                repaint();
+            }
+            
+        });
     }
 
     /**
@@ -31,12 +55,13 @@ public class Item_people extends javax.swing.JPanel {
         imageAvatar1 = new chat.app.swing.ImageAvatar();
         name = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(229, 229, 229));
-        setPreferredSize(new java.awt.Dimension(400, 50));
+        setBackground(new java.awt.Color(230, 230, 230));
+        setPreferredSize(new java.awt.Dimension(200, 50));
 
         imageAvatar1.setBorderSize(0);
         imageAvatar1.setImage(new javax.swing.ImageIcon(getClass().getResource("/chat/app/icon/profile.png"))); // NOI18N
 
+        name.setBackground(new java.awt.Color(230, 230, 230));
         name.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         name.setText("Name");
 
@@ -45,15 +70,15 @@ public class Item_people extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(name, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
