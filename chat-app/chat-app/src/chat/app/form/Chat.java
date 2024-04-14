@@ -26,22 +26,11 @@ public class Chat extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        chat_title = new chat.app.component.Chat_title();
         chat_bottom = new chat.app.component.Chat_bottom();
         chat_body2 = new chat.app.component.chat_body();
+        chat_title2 = new chat.app.component.Chat_title();
 
         setBackground(new java.awt.Color(249, 249, 249));
-
-        javax.swing.GroupLayout chat_titleLayout = new javax.swing.GroupLayout(chat_title);
-        chat_title.setLayout(chat_titleLayout);
-        chat_titleLayout.setHorizontalGroup(
-            chat_titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        chat_titleLayout.setVerticalGroup(
-            chat_titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
-        );
 
         javax.swing.GroupLayout chat_bottomLayout = new javax.swing.GroupLayout(chat_bottom);
         chat_bottom.setLayout(chat_bottomLayout);
@@ -58,14 +47,14 @@ public class Chat extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(chat_title, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
             .addComponent(chat_bottom, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
             .addComponent(chat_body2, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
+            .addComponent(chat_title2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(chat_title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(chat_title2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(chat_body2, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
@@ -77,6 +66,6 @@ public class Chat extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private chat.app.component.chat_body chat_body2;
     private chat.app.component.Chat_bottom chat_bottom;
-    private chat.app.component.Chat_title chat_title;
+    private chat.app.component.Chat_title chat_title2;
     // End of variables declaration//GEN-END:variables
 }
