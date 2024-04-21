@@ -23,17 +23,19 @@ public class chat_body extends javax.swing.JPanel {
         init();
         addItemRight("hello, hi how are you?,Oracle Corporation is an American multinational computer technology company headquartered in Austin, Texas, United States. In 2020, Oracle was the third-largest software company in the world by revenue and market capitalization. In 2023, the company’s seat in Forbes Global 2000 was 80. ");
         addItemRight("hello, hi how are you?,Oracle Corporation is an American multinational computer technology company headquartered in Austin, Texas, United States. In 2020, Oracle was the third-largest software company in the world by revenue and market capitalization. In 2023, the company’s seat in Forbes Global 2000 was 80. ");
-        addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry");
+        addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry","Hamza");
         addItemRight("OHHH \n YEAHHHHH");
-        addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry");
+        addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry","Hamza");
         addItemRight("OHHH \n YEAHHHHH");
-        addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry");
+        addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry","Hamza");
+        addDate("20/4/2024");
         addItemRight("OHHH \n YEAHHHHH");
-        addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry");
+        addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry", "Hamza");
         addItemRight("OHHH \n YEAHHHHH");
-        addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry");
+        addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry","Hamza");
         addItemRight("OHHH \n YEAHHHHH");
-        addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry");
+        addDate("22/4/2024");
+        addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry","Hamza");
         addItemRight("OHHH \n YEAHHHHH");
     }
     
@@ -43,19 +45,28 @@ public class chat_body extends javax.swing.JPanel {
         sp.getVerticalScrollBar().setBackground(Color.WHITE);
     }
     
-    public void addItemLeft(String Text){
-        chat_Left item = new chat_Left();
+    public void addItemLeft(String Text , String user){
+        chat_Left_With_Profile item = new chat_Left_With_Profile();
         item.setText(Text);
-        body.add(item,"Wrap, W ::80%");
+        item.setUserProfile(user);
+        body.add(item,"Wrap, W 100::80%");
         body.repaint();
         body.revalidate();
     }
     public void addItemRight(String Text){
         chat_Right item = new chat_Right();
         item.setText(Text);
-        body.add(item,"Wrap, al right, W ::80%");
+        body.add(item,"Wrap, al right, W 100::80%");
         body.repaint();
         body.revalidate();
+    }
+    public void addDate(String Date){
+        Chat_Date dateitem = new Chat_Date();
+        dateitem.setDate(Date);
+        body.add(dateitem, "wrap, al center");
+        body.repaint();
+        body.revalidate();
+    
     }
     
 
