@@ -10,6 +10,7 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -66,6 +67,15 @@ public class chat_item extends javax.swing.JLayeredPane {
         add(layer);
     }
     
+    public void setImage(Boolean right,Icon... image){
+        JLayeredPane layer = new JLayeredPane();
+        layer.setLayout(new FlowLayout(right?FlowLayout.RIGHT:FlowLayout.LEFT));
+        layer.setBorder(new EmptyBorder(0, 5, 0, 5));
+        Chat_Image chatImage = new Chat_Image(right);
+        chatImage.addImage(image);
+        layer.add(chatImage);
+        add(layer);
+    }
     public void sendSuccess(){
         if (label !=null){
             label.setIcon(new ImageIcon(getClass().getResource("/chat/app/icon/tick.png")));
@@ -77,6 +87,10 @@ public class chat_item extends javax.swing.JLayeredPane {
             label.setIcon(new ImageIcon(getClass().getResource("/chat/app/icon/double_tick.png")));
  
         }
+    }
+    
+    public void hidetext(){
+        txt.setVisible(false);
     }
 
     @Override

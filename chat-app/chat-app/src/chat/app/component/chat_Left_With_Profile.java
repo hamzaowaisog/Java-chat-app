@@ -28,10 +28,21 @@ public class chat_Left_With_Profile extends javax.swing.JLayeredPane {
         image.setImage(img);
     }
     public void setText(String text){
-        txt.setText(text);
-        txt.setTime("10:30 PM");
+        if(text.equals("")){
+            txt.hidetext();
+        }
+        else{
+            txt.setText(text);
+        }
+//        txt.setTime("10:30 PM");
 //        txt.sendSuccess();
         
+    }
+    public void setImage(Icon... image){
+        txt.setImage(false, image);
+    }
+    public void setTime(){
+        txt.setTime("10:30 PM");
     }
 
     /**

@@ -6,6 +6,8 @@ package chat.app.component;
 
 import chat.app.swing.Scrollbar;
 import java.awt.Color;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JScrollBar;
 import net.miginfocom.swing.MigLayout;
 
@@ -22,20 +24,20 @@ public class chat_body extends javax.swing.JPanel {
         initComponents();
         init();
         addItemRight("hello, hi how are you?,Oracle Corporation is an American multinational computer technology company headquartered in Austin, Texas, United States. In 2020, Oracle was the third-largest software company in the world by revenue and market capitalization. In 2023, the company’s seat in Forbes Global 2000 was 80. ");
-        addItemRight("hello, hi how are you?,Oracle Corporation is an American multinational computer technology company headquartered in Austin, Texas, United States. In 2020, Oracle was the third-largest software company in the world by revenue and market capitalization. In 2023, the company’s seat in Forbes Global 2000 was 80. ");
+        addItemRight("hello, hi how are you?,Oracle Corporation is an American multinational computer technology company headquartered in Austin, Texas, United States. In 2020, Oracle was the third-largest software company in the world by revenue and market capitalization. In 2023, the company’s seat in Forbes Global 2000 was 80. ",new ImageIcon(getClass().getResource("/chat/app/icon/testing/pic.jpg")));
         addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry","Hamza");
         addItemRight("OHHH \n YEAHHHHH");
         addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry","Hamza");
         addItemRight("OHHH \n YEAHHHHH");
         addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry","Hamza");
         addDate("20/4/2024");
-        addItemRight("OHHH \n YEAHHHHH");
+        addItemRight("OHHH \n YEAHHHHH",new ImageIcon(getClass().getResource("/chat/app/icon/testing/dog.jpg")),new ImageIcon(getClass().getResource("/chat/app/icon/testing/pic.jpg")));
         addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry", "Hamza");
         addItemRight("OHHH \n YEAHHHHH");
-        addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry","Hamza");
+        addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry","Hamza",new ImageIcon(getClass().getResource("/chat/app/icon/testing/dog.jpg")),new ImageIcon(getClass().getResource("/chat/app/icon/testing/dog.jpg")));
         addItemRight("OHHH \n YEAHHHHH");
         addDate("22/4/2024");
-        addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry","Hamza");
+        addItemLeft("","Hamza",new ImageIcon(getClass().getResource("/chat/app/icon/testing/pic.jpg")));
         addItemRight("OHHH \n YEAHHHHH");
     }
     
@@ -45,17 +47,21 @@ public class chat_body extends javax.swing.JPanel {
         sp.getVerticalScrollBar().setBackground(Color.WHITE);
     }
     
-    public void addItemLeft(String Text , String user){
+    public void addItemLeft(String Text , String user,Icon... image){
         chat_Left_With_Profile item = new chat_Left_With_Profile();
         item.setText(Text);
-        item.setUserProfile(user);
+        item.setImage(image);
+        item.setTime();
+//        item.setUserProfile(user);
         body.add(item,"Wrap, W 100::80%");
         body.repaint();
         body.revalidate();
     }
-    public void addItemRight(String Text){
+    public void addItemRight(String Text,Icon... image){
         chat_Right item = new chat_Right();
         item.setText(Text);
+        item.setImage(image);
+        item.setTime();
         body.add(item,"Wrap, al right, W 100::80%");
         body.repaint();
         body.revalidate();

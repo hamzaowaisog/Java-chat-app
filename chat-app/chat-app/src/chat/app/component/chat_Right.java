@@ -5,6 +5,7 @@
 package chat.app.component;
 
 import java.awt.Color;
+import javax.swing.Icon;
 
 /**
  *
@@ -21,10 +22,22 @@ public class chat_Right extends javax.swing.JLayeredPane {
         
     }
     public void setText(String text){
-        txt.setText(text);
-        txt.setTime("10:35 PM");
+        if(text.equals("")){
+            txt.hidetext();
+        }
+        else{
+            txt.setText(text);
+        }
         txt.seen();
+//        txt.setTime("10:30 PM");
+//        txt.sendSuccess();
         
+    }
+    public void setImage(Icon... image){
+        txt.setImage(true, image);
+    }
+    public void setTime(){
+        txt.setTime("10:30 PM");
     }
 
     /**
