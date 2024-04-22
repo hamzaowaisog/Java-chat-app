@@ -31,13 +31,14 @@ public class chat_body extends javax.swing.JPanel {
         addItemRight("OHHH \n YEAHHHHH");
         addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry","Hamza");
         addDate("20/4/2024");
+        String img[] = {"LRMj,K-:?G9G_JIon}WqD~ITRPs,"};
         addItemRight("OHHH \n YEAHHHHH",new ImageIcon(getClass().getResource("/chat/app/icon/testing/cat.png")),new ImageIcon(getClass().getResource("/chat/app/icon/testing/pic.jpg")));
         addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry", "Hamza");
         addItemRight("OHHH \n YEAHHHHH");
         addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry","Hamza",new ImageIcon(getClass().getResource("/chat/app/icon/testing/dog.jpg")),new ImageIcon(getClass().getResource("/chat/app/icon/testing/dog.jpg")));
         addItemRight("OHHH \n YEAHHHHH");
         addDate("22/4/2024");
-        addItemLeft("","Hamza",new ImageIcon(getClass().getResource("/chat/app/icon/testing/pic.jpg")));
+        addItemLeft("","Hamza",img);
         addItemRight("OHHH \n YEAHHHHH");
     }
     
@@ -57,6 +58,18 @@ public class chat_body extends javax.swing.JPanel {
         body.repaint();
         body.revalidate();
     }
+    
+    public void addItemLeft(String Text , String user,String[] image){
+        chat_Left_With_Profile item = new chat_Left_With_Profile();
+        item.setText(Text);
+        item.setImage(image);
+        item.setTime();
+//        item.setUserProfile(user);
+        body.add(item,"Wrap, W 100::80%");
+        body.repaint();
+        body.revalidate();
+    }
+        
     public void addItemRight(String Text,Icon... image){
         chat_Right item = new chat_Right();
         item.setText(Text);
