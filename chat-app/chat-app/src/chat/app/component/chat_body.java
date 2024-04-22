@@ -31,7 +31,7 @@ public class chat_body extends javax.swing.JPanel {
         addItemRight("OHHH \n YEAHHHHH");
         addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry","Hamza");
         addDate("20/4/2024");
-        addItemRight("OHHH \n YEAHHHHH",new ImageIcon(getClass().getResource("/chat/app/icon/testing/dog.jpg")),new ImageIcon(getClass().getResource("/chat/app/icon/testing/pic.jpg")));
+        addItemRight("OHHH \n YEAHHHHH",new ImageIcon(getClass().getResource("/chat/app/icon/testing/cat.png")),new ImageIcon(getClass().getResource("/chat/app/icon/testing/pic.jpg")));
         addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry", "Hamza");
         addItemRight("OHHH \n YEAHHHHH");
         addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry","Hamza",new ImageIcon(getClass().getResource("/chat/app/icon/testing/dog.jpg")),new ImageIcon(getClass().getResource("/chat/app/icon/testing/dog.jpg")));

@@ -4,10 +4,13 @@
  */
 package chat.app.main;
 
+import chat.app.event.EventImageView;
+import chat.app.event.PublicEvent;
 import chat.app.swing.ComponentResizer;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
@@ -31,6 +34,23 @@ public class main extends javax.swing.JFrame {
         cr.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
         cr.setSnapSize(new Dimension(10,10));
         setIconImage(new ImageIcon(getClass().getResource("/chat/app/icon/icon.png")).getImage());
+        view_Image.setVisible(false);
+        home.setVisible(true);
+        initEvent();
+    }
+    
+    private void initEvent(){
+        PublicEvent.getInstance().addEventImageView(new EventImageView(){
+            @Override
+            public void viewImage(Icon image){
+                view_Image.viewImage(image);
+            }
+
+            @Override
+            public void saveImage(Icon image) {
+                System.out.println("Saving Image");
+            }
+        });
     }
 
     /**
@@ -48,7 +68,8 @@ public class main extends javax.swing.JFrame {
         minimize = new javax.swing.JButton();
         close = new javax.swing.JButton();
         body = new javax.swing.JLayeredPane();
-        home1 = new chat.app.form.Home();
+        view_Image = new chat.app.form.View_Image();
+        home = new chat.app.form.Home();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -105,8 +126,9 @@ public class main extends javax.swing.JFrame {
             .addComponent(minimize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        body.setLayout(new java.awt.BorderLayout());
-        body.add(home1, java.awt.BorderLayout.CENTER);
+        body.setLayout(new java.awt.CardLayout());
+        body.add(view_Image, "card3");
+        body.add(home, "card2");
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
@@ -214,8 +236,9 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JLayeredPane body;
     private javax.swing.JPanel border;
     private javax.swing.JButton close;
-    private chat.app.form.Home home1;
+    private chat.app.form.Home home;
     private javax.swing.JButton minimize;
     private javax.swing.JPanel tittle;
+    private chat.app.form.View_Image view_Image;
     // End of variables declaration//GEN-END:variables
 }
