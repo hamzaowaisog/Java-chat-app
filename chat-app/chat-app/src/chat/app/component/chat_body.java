@@ -40,10 +40,13 @@ public class chat_body extends javax.swing.JPanel {
         addDate("22/4/2024");
         addItemLeft("","Hamza",img);
         addItemRight("OHHH \n YEAHHHHH");
+        addItemLeft("","Hamza",img);
+        addItemFile("My file", "Hamza", "Porn.mov", "25 MB");
+        addItemFileRight("","Lectures.PDF","60 KB");
     }
     
     private void init(){
-        body.setLayout(new MigLayout("fillx","","0[]0"));
+        body.setLayout(new MigLayout("fillx","","5[]5"));
         sp.setVerticalScrollBar(new Scrollbar());
         sp.getVerticalScrollBar().setBackground(Color.WHITE);
     }
@@ -53,7 +56,7 @@ public class chat_body extends javax.swing.JPanel {
         item.setText(Text);
         item.setImage(image);
         item.setTime();
-//        item.setUserProfile(user);
+        item.setUserProfile(user);
         body.add(item,"Wrap, W 100::80%");
         body.repaint();
         body.revalidate();
@@ -64,7 +67,18 @@ public class chat_body extends javax.swing.JPanel {
         item.setText(Text);
         item.setImage(image);
         item.setTime();
-//        item.setUserProfile(user);
+        item.setUserProfile(user);
+        body.add(item,"Wrap, W 100::80%");
+        body.repaint();
+        body.revalidate();
+    }
+    
+    public void addItemFile(String Text , String user,String filename , String filesize){
+        chat_Left_With_Profile item = new chat_Left_With_Profile();
+        item.setText(Text);
+        item.setFile(filename, filesize);
+        item.setTime();
+        item.setUserProfile(user);
         body.add(item,"Wrap, W 100::80%");
         body.repaint();
         body.revalidate();
@@ -74,6 +88,16 @@ public class chat_body extends javax.swing.JPanel {
         chat_Right item = new chat_Right();
         item.setText(Text);
         item.setImage(image);
+        item.setTime();
+        body.add(item,"Wrap, al right, W 100::80%");
+        body.repaint();
+        body.revalidate();
+    }
+    
+    public void addItemFileRight(String text,String filename , String filesize){
+        chat_Right item = new chat_Right();
+        item.setFile(filename, filesize);
+        item.setText(text);
         item.setTime();
         body.add(item,"Wrap, al right, W 100::80%");
         body.repaint();

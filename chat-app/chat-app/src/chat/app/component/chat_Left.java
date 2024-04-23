@@ -42,6 +42,9 @@ public class chat_Left extends javax.swing.JLayeredPane {
     public void setTime(){
         txt.setTime("10:30 PM");
     }
+    public void setFile(String filename , String filesize){
+        txt.setFile(filename,filesize);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

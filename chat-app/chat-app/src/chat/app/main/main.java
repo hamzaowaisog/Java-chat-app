@@ -30,7 +30,7 @@ public class main extends javax.swing.JFrame {
     private void init(){
         ComponentResizer cr = new ComponentResizer();
         cr.registerComponent(this);
-        cr.setMinimumSize(new Dimension(800,500));
+        cr.setMinimumSize(new Dimension(900,500));
         cr.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
         cr.setSnapSize(new Dimension(10,10));
         setIconImage(new ImageIcon(getClass().getResource("/chat/app/icon/icon.png")).getImage());

@@ -85,6 +85,17 @@ public class chat_item extends javax.swing.JLayeredPane {
         layer.add(chatImage);
         add(layer);
     }
+    
+    public void setFile(String filename, String filesize){
+        JLayeredPane layer = new JLayeredPane();
+        layer.setLayout(new FlowLayout(FlowLayout.LEFT));
+        layer.setBorder(new EmptyBorder(0, 5, 0, 5));
+        Chat_File chatfile = new Chat_File();
+        chatfile.setFile(filename, filesize);
+        layer.add(chatfile);
+        add(layer);
+    }
+    
     public void sendSuccess(){
         if (label !=null){
             label.setIcon(new ImageIcon(getClass().getResource("/chat/app/icon/tick.png")));
