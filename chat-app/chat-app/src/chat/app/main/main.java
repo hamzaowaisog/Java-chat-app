@@ -1,6 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package chat.app.main;
 
@@ -8,7 +9,6 @@ import chat.app.event.EventImageView;
 import chat.app.event.PublicEvent;
 import chat.app.swing.ComponentResizer;
 import java.awt.Dimension;
-import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -16,40 +16,42 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author MIR HAMZA
+ * @author RAVEN
  */
-public class main extends javax.swing.JFrame {
+public class Main extends javax.swing.JFrame {
 
     /**
-     * Creates new form main
+     * Creates new form Main
      */
-    public main() {
+    public Main() {
         initComponents();
         init();
     }
-    private void init(){
-        ComponentResizer cr = new ComponentResizer();
-        cr.registerComponent(this);
-        cr.setMinimumSize(new Dimension(900,500));
-        cr.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
-        cr.setSnapSize(new Dimension(10,10));
+
+    private void init() {
         setIconImage(new ImageIcon(getClass().getResource("/chat/app/icon/icon.png")).getImage());
-        view_Image.setVisible(false);
+        ComponentResizer com = new ComponentResizer();
+        com.registerComponent(this);
+        com.setMinimumSize(new Dimension(900, 500));
+        com.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
+        com.setSnapSize(new Dimension(10, 10));
+        vIew_Image.setVisible(false);
         home.setVisible(true);
         initEvent();
     }
-    
-    private void initEvent(){
-        PublicEvent.getInstance().addEventImageView(new EventImageView(){
+
+    private void initEvent() {
+        PublicEvent.getInstance().addEventImageView(new EventImageView() {
             @Override
-            public void viewImage(Icon image){
-                view_Image.viewImage(image);
+            public void viewImage(Icon image) {
+                vIew_Image.viewImage(image);
             }
 
             @Override
             public void saveImage(Icon image) {
-                System.out.println("Saving Image");
+                System.out.println("Save Image next update");
             }
+
         });
     }
 
@@ -64,11 +66,11 @@ public class main extends javax.swing.JFrame {
 
         border = new javax.swing.JPanel();
         background = new javax.swing.JPanel();
-        tittle = new javax.swing.JPanel();
-        minimize = new javax.swing.JButton();
-        close = new javax.swing.JButton();
+        title = new javax.swing.JPanel();
+        cmdMinimize = new javax.swing.JButton();
+        cmdClose = new javax.swing.JButton();
         body = new javax.swing.JLayeredPane();
-        view_Image = new chat.app.form.View_Image();
+        vIew_Image = new chat.app.form.VIew_Image();
         home = new chat.app.form.Home();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -78,75 +80,81 @@ public class main extends javax.swing.JFrame {
 
         background.setBackground(new java.awt.Color(255, 255, 255));
 
-        tittle.setBackground(new java.awt.Color(229, 229, 229));
-        tittle.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        title.setBackground(new java.awt.Color(229, 229, 229));
+        title.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                tittleMouseDragged(evt);
+                titleMouseDragged(evt);
             }
         });
-        tittle.addMouseListener(new java.awt.event.MouseAdapter() {
+        title.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                tittleMousePressed(evt);
+                titleMousePressed(evt);
             }
         });
 
-        minimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chat/app/icon/minimize.png"))); // NOI18N
-        minimize.setBorder(null);
-        minimize.setContentAreaFilled(false);
-        minimize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        minimize.addActionListener(new java.awt.event.ActionListener() {
+        cmdMinimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chat/app/icon/minimize.png"))); // NOI18N
+        cmdMinimize.setBorder(null);
+        cmdMinimize.setContentAreaFilled(false);
+        cmdMinimize.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cmdMinimize.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                minimizeActionPerformed(evt);
+                cmdMinimizeActionPerformed(evt);
             }
         });
 
-        close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chat/app/icon/close.png"))); // NOI18N
-        close.setBorder(null);
-        close.setContentAreaFilled(false);
-        close.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        close.addActionListener(new java.awt.event.ActionListener() {
+        cmdClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chat/app/icon/close.png"))); // NOI18N
+        cmdClose.setBorder(null);
+        cmdClose.setContentAreaFilled(false);
+        cmdClose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        cmdClose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                closeActionPerformed(evt);
+                cmdCloseActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout tittleLayout = new javax.swing.GroupLayout(tittle);
-        tittle.setLayout(tittleLayout);
-        tittleLayout.setHorizontalGroup(
-            tittleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tittleLayout.createSequentialGroup()
+        javax.swing.GroupLayout titleLayout = new javax.swing.GroupLayout(title);
+        title.setLayout(titleLayout);
+        titleLayout.setHorizontalGroup(
+            titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, titleLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(minimize)
+                .addComponent(cmdMinimize)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(close))
+                .addComponent(cmdClose)
+                .addContainerGap())
         );
-        tittleLayout.setVerticalGroup(
-            tittleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(close, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
-            .addComponent(minimize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        titleLayout.setVerticalGroup(
+            titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(titleLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(titleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmdClose, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                    .addComponent(cmdMinimize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
         );
 
         body.setLayout(new java.awt.CardLayout());
-        body.add(view_Image, "card3");
+        body.setLayer(vIew_Image, javax.swing.JLayeredPane.POPUP_LAYER);
+        body.add(vIew_Image, "card3");
         body.add(home, "card2");
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
         backgroundLayout.setHorizontalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tittle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(title, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(backgroundLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, 1431, Short.MAX_VALUE)
+                .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, 1210, Short.MAX_VALUE)
                 .addContainerGap())
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addComponent(tittle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
+                .addComponent(body, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -154,22 +162,28 @@ public class main extends javax.swing.JFrame {
         border.setLayout(borderLayout);
         borderLayout.setHorizontalGroup(
             borderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(borderLayout.createSequentialGroup()
+                .addGap(1, 1, 1)
+                .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(1, 1, 1))
         );
         borderLayout.setVerticalGroup(
             borderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(borderLayout.createSequentialGroup()
+                .addGap(1, 1, 1)
+                .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(1, 1, 1))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(border, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(border, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(border, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(border, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -178,23 +192,22 @@ public class main extends javax.swing.JFrame {
 
     private int pX;
     private int pY;
-    private void tittleMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tittleMouseDragged
-        this.setLocation(this.getLocation().x + evt.getX() - pX,this.getLocation().y + evt.getY() - pY);
-    }//GEN-LAST:event_tittleMouseDragged
+    private void titleMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titleMouseDragged
+        this.setLocation(this.getLocation().x + evt.getX() - pX, this.getLocation().y + evt.getY() - pY);
+    }//GEN-LAST:event_titleMouseDragged
 
-    private void tittleMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tittleMousePressed
-         pX = evt.getX();
-         pY = evt.getY();
-    }//GEN-LAST:event_tittleMousePressed
+    private void titleMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_titleMousePressed
+        pX = evt.getX();
+        pY = evt.getY();
+    }//GEN-LAST:event_titleMousePressed
 
-    private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
+    private void cmdCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCloseActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_closeActionPerformed
+    }//GEN-LAST:event_cmdCloseActionPerformed
 
-    private void minimizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimizeActionPerformed
-     
+    private void cmdMinimizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMinimizeActionPerformed
         this.setState(JFrame.ICONIFIED);
-    }//GEN-LAST:event_minimizeActionPerformed
+    }//GEN-LAST:event_cmdMinimizeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,20 +226,20 @@ public class main extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new main().setVisible(true);
+                new Main().setVisible(true);
             }
         });
     }
@@ -235,10 +248,10 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JPanel background;
     private javax.swing.JLayeredPane body;
     private javax.swing.JPanel border;
-    private javax.swing.JButton close;
+    private javax.swing.JButton cmdClose;
+    private javax.swing.JButton cmdMinimize;
     private chat.app.form.Home home;
-    private javax.swing.JButton minimize;
-    private javax.swing.JPanel tittle;
-    private chat.app.form.View_Image view_Image;
+    private javax.swing.JPanel title;
+    private chat.app.form.VIew_Image vIew_Image;
     // End of variables declaration//GEN-END:variables
 }

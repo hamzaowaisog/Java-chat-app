@@ -1,12 +1,13 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package chat.app.form;
 
 /**
  *
- * @author MIR HAMZA
+ * @author RAVEN
  */
 public class Menu_Right extends javax.swing.JPanel {
 
@@ -30,23 +31,23 @@ public class Menu_Right extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(249, 249, 249));
 
-        jLabel1.setText("Menu Right Note");
+        jLabel1.setText("Menu Righ Note");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addGap(16, 16, 16)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(128, 128, 128)
+                .addGap(121, 121, 121)
                 .addComponent(jLabel1)
-                .addContainerGap(537, Short.MAX_VALUE))
+                .addContainerGap(544, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

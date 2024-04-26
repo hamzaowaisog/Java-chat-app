@@ -1,19 +1,20 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package chat.app.component;
 
 /**
  *
- * @author MIR HAMZA
+ * @author RAVEN
  */
-public class Chat_bottom extends javax.swing.JPanel {
+public class Chat_Bottom extends javax.swing.JPanel {
 
     /**
-     * Creates new form Chat_title
+     * Creates new form Chat_Title
      */
-    public Chat_bottom() {
+    public Chat_Bottom() {
         initComponents();
     }
 
@@ -27,7 +28,6 @@ public class Chat_bottom extends javax.swing.JPanel {
     private void initComponents() {
 
         setBackground(new java.awt.Color(242, 242, 242));
-        setPreferredSize(new java.awt.Dimension(400, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

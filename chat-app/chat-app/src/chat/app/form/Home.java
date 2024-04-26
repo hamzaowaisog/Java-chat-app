@@ -1,27 +1,19 @@
-
 package chat.app.form;
 
 import net.miginfocom.swing.MigLayout;
 
-/**
- *
- * @author MIR HAMZA
- */
 public class Home extends javax.swing.JLayeredPane {
 
-    /**
-     * Creates new form Home
-     */
     public Home() {
         initComponents();
         init();
     }
-    
-    public void init(){
-        setLayout(new MigLayout("fillx, filly","0[200!]5[fill, 100%]5[200!]0","0[fill]0"));
+
+    private void init() {
+        setLayout(new MigLayout("fillx, filly", "0[200!]5[fill, 100%]5[200!]0", "0[fill]0"));
         this.add(new Menu_Left());
         this.add(new Chat());
-        this.add(new Menu_Right()); 
+        this.add(new Menu_Right());
     }
 
     /**
@@ -37,11 +29,11 @@ public class Home extends javax.swing.JLayeredPane {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1316, Short.MAX_VALUE)
+            .addGap(0, 1007, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 601, Short.MAX_VALUE)
+            .addGap(0, 551, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

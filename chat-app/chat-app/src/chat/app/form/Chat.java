@@ -1,12 +1,13 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package chat.app.form;
 
 /**
  *
- * @author MIR HAMZA
+ * @author RAVEN
  */
 public class Chat extends javax.swing.JPanel {
 
@@ -26,20 +27,20 @@ public class Chat extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        chat_bottom = new chat.app.component.Chat_bottom();
-        chat_body2 = new chat.app.component.chat_body();
-        chat_title2 = new chat.app.component.Chat_title();
+        chatBottom = new chat.app.component.Chat_Bottom();
+        chatBody = new chat.app.component.Chat_Body();
+        chat_Title1 = new chat.app.component.Chat_Title();
 
         setBackground(new java.awt.Color(249, 249, 249));
 
-        javax.swing.GroupLayout chat_bottomLayout = new javax.swing.GroupLayout(chat_bottom);
-        chat_bottom.setLayout(chat_bottomLayout);
-        chat_bottomLayout.setHorizontalGroup(
-            chat_bottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout chatBottomLayout = new javax.swing.GroupLayout(chatBottom);
+        chatBottom.setLayout(chatBottomLayout);
+        chatBottomLayout.setHorizontalGroup(
+            chatBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        chat_bottomLayout.setVerticalGroup(
-            chat_bottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        chatBottomLayout.setVerticalGroup(
+            chatBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 60, Short.MAX_VALUE)
         );
 
@@ -47,25 +48,25 @@ public class Chat extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(chat_bottom, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
-            .addComponent(chat_body2, javax.swing.GroupLayout.DEFAULT_SIZE, 730, Short.MAX_VALUE)
-            .addComponent(chat_title2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(chatBottom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(chatBody, javax.swing.GroupLayout.DEFAULT_SIZE, 727, Short.MAX_VALUE)
+            .addComponent(chat_Title1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(chat_title2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(chat_Title1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(chat_body2, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
+                .addComponent(chatBody, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(chat_bottom, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(chatBottom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private chat.app.component.chat_body chat_body2;
-    private chat.app.component.Chat_bottom chat_bottom;
-    private chat.app.component.Chat_title chat_title2;
+    private chat.app.component.Chat_Body chatBody;
+    private chat.app.component.Chat_Bottom chatBottom;
+    private chat.app.component.Chat_Title chat_Title1;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,6 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package testing;
 
@@ -11,18 +12,17 @@ import javax.imageio.ImageIO;
 
 /**
  *
- * @author MIR HAMZA
+ * @author RAVEN
  */
 public class Test {
+
     public static void main(String[] args) {
-        try{
-            BufferedImage image = ImageIO.read(new File("E:\\FAST UNIVERSITY\\SEMESTER 6\\CN_PROJECT_HELP\\java-swing-chat-application-main\\part 8\\chart-application\\src\\com\\raven\\icon\\testing\\dog.jpg"));
-            String blurHash = BlurHash.encode(image); 
-            System.out.println(blurHash);
-        }
-        catch(Exception e){
+        try {
+            BufferedImage image = ImageIO.read(new File("C:\\Users\\RAVEN\\Desktop\\movice\\To Olivia.jpg"));
+            String blurhashStr = BlurHash.encode(image);
+            System.out.println(blurhashStr);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
 }

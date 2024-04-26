@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package chat.app.swing;
 
-/**
- *
- * @author MIR HAMZA
- */
 import java.awt.AlphaComposite;
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -106,5 +98,4 @@ public class ImageAvatar extends JComponent {
     private Image toImage(Icon icon) {
         return ((ImageIcon) icon).getImage();
     }
-
 }

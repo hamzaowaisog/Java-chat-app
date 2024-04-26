@@ -1,4 +1,4 @@
-package com.raven.swing;
+package chat.app.swing;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -37,12 +37,11 @@ public class PictureBox extends JLayeredPane {
     private Rectangle getAutoSize(Icon image) {
         int w = getWidth();
         int h = getHeight();
-        
-        if(w>image.getIconWidth()){
-            w=image.getIconWidth();
+        if (w > image.getIconWidth()) {
+            w = image.getIconWidth();
         }
-        if(h>image.getIconHeight()){
-            h=image.getIconHeight();
+        if (h > image.getIconHeight()) {
+            h = image.getIconHeight();
         }
         int iw = image.getIconWidth();
         int ih = image.getIconHeight();
@@ -51,8 +50,8 @@ public class PictureBox extends JLayeredPane {
         double scale = Math.min(xScale, yScale);
         int width = (int) (scale * iw);
         int height = (int) (scale * ih);
-        int x = getWidth()/2-(width/2);
-        int y = getHeight()/2-(height/2);
+        int x = getWidth() / 2 - (width / 2);
+        int y = getHeight() / 2 - (height / 2);
         return new Rectangle(new Point(x, y), new Dimension(width, height));
     }
 

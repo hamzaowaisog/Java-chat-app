@@ -1,123 +1,101 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package chat.app.component;
 
-import chat.app.swing.Scrollbar;
+import chat.app.swing.ScrollBar;
 import java.awt.Color;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JScrollBar;
 import net.miginfocom.swing.MigLayout;
 
-/**
- *
- * @author MIR HAMZA
- */
-public class chat_body extends javax.swing.JPanel {
+public class Chat_Body extends javax.swing.JPanel {
 
-    /**
-     * Creates new form chat_body
-     */
-    public chat_body() {
+    public Chat_Body() {
         initComponents();
         init();
-        addItemRight("hello, hi how are you?,Oracle Corporation is an American multinational computer technology company headquartered in Austin, Texas, United States. In 2020, Oracle was the third-largest software company in the world by revenue and market capitalization. In 2023, the company’s seat in Forbes Global 2000 was 80. ");
-        addItemRight("hello, hi how are you?,Oracle Corporation is an American multinational computer technology company headquartered in Austin, Texas, United States. In 2020, Oracle was the third-largest software company in the world by revenue and market capitalization. In 2023, the company’s seat in Forbes Global 2000 was 80. ",new ImageIcon(getClass().getResource("/chat/app/icon/testing/pic.jpg")));
-        addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry","Hamza");
-        addItemRight("OHHH \n YEAHHHHH");
-        addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry","Hamza");
-        addItemRight("OHHH \n YEAHHHHH");
-        addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry","Hamza");
-        addDate("20/4/2024");
-        String img[] = {"LRMj,K-:?G9G_JIon}WqD~ITRPs,"};
-        addItemRight("OHHH \n YEAHHHHH",new ImageIcon(getClass().getResource("/chat/app/icon/testing/cat.png")),new ImageIcon(getClass().getResource("/chat/app/icon/testing/pic.jpg")));
-        addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry", "Hamza");
-        addItemRight("OHHH \n YEAHHHHH");
-        addItemLeft("How are you juicy pussy \n It is so wettttt \n slipperry","Hamza",new ImageIcon(getClass().getResource("/chat/app/icon/testing/dog.jpg")),new ImageIcon(getClass().getResource("/chat/app/icon/testing/dog.jpg")));
-        addItemRight("OHHH \n YEAHHHHH");
-        addDate("22/4/2024");
-        addItemLeft("","Hamza",img);
-        addItemRight("OHHH \n YEAHHHHH");
-        addItemLeft("","Hamza",img);
-        addItemFile("My file", "Hamza", "Porn.mov", "25 MB");
-        addItemFileRight("","Lectures.PDF","60 KB");
+        addItemRight("Send a text message to a group of contacts. Include photos, personalize your texts, and track who clicked your links.", new ImageIcon(getClass().getResource("/chat/app/icon/testing/cat.png")), new ImageIcon(getClass().getResource("/chat/app/icon/testing/pic.jpg")));
+        addItemRight("hello\nHi");
+        addItemLeft("Simpletext started as a passion project because I couldn’t find what I was looking for. Most apps were trying to do too much and ended up bloated with features I don’t need. So I built Simpletext based on a simple premise — what if there’s an app that refuses to do more, choosing instead to do just one thing, and do it well? For Simpletext, that one thing is writing.", "Raven", new ImageIcon(getClass().getResource("/chat/app/icon/testing/dog.jpg")), new ImageIcon(getClass().getResource("/chat/app/icon/testing/pic.jpg")));
+        addDate("05/06/2021");
+        String img[] = {"LRMj,K-:?G9G_JIon}WqD~ITRPs,", "LCGlO@00.R~o.9DOO[%L02?aJ7D*"};
+        addItemLeft("hello\nerererew\newewe", "Dara", img);
+        addItemRight("hello\nerererew\newewe", new ImageIcon(getClass().getResource("/chat/app/icon/testing/pic.jpg")));
+        addItemLeft("Hello this is my friend", "Jonh", new ImageIcon(getClass().getResource("/chat/app/icon/testing/dog.jpg")), new ImageIcon(getClass().getResource("/chat/app/icon/testing/dog.jpg")));
+        addItemRight("Ok\nWhat is he name ?");
+        addItemLeft("", "Ro", new ImageIcon(getClass().getResource("/chat/app/icon/testing/pic.jpg")));
+        addItemFile("", "Dara", "my doc.pdf", "1 MB");
+        addItemFileRight("", "myfile.rar", "15 MB");
+        
     }
-    
-    private void init(){
-        body.setLayout(new MigLayout("fillx","","5[]5"));
-        sp.setVerticalScrollBar(new Scrollbar());
+
+    private void init() {
+        body.setLayout(new MigLayout("fillx", "", "5[]5"));
+        sp.setVerticalScrollBar(new ScrollBar());
         sp.getVerticalScrollBar().setBackground(Color.WHITE);
     }
-    
-    public void addItemLeft(String Text , String user,Icon... image){
-        chat_Left_With_Profile item = new chat_Left_With_Profile();
-        item.setText(Text);
-        item.setImage(image);
-        item.setTime();
-        item.setUserProfile(user);
-        body.add(item,"Wrap, W 100::80%");
-        body.repaint();
-        body.revalidate();
-    }
-    
-    public void addItemLeft(String Text , String user,String[] image){
-        chat_Left_With_Profile item = new chat_Left_With_Profile();
-        item.setText(Text);
-        item.setImage(image);
-        item.setTime();
-        item.setUserProfile(user);
-        body.add(item,"Wrap, W 100::80%");
-        body.repaint();
-        body.revalidate();
-    }
-    
-    public void addItemFile(String Text , String user,String filename , String filesize){
-        chat_Left_With_Profile item = new chat_Left_With_Profile();
-        item.setText(Text);
-        item.setFile(filename, filesize);
-        item.setTime();
-        item.setUserProfile(user);
-        body.add(item,"Wrap, W 100::80%");
-        body.repaint();
-        body.revalidate();
-    }
-        
-    public void addItemRight(String Text,Icon... image){
-        chat_Right item = new chat_Right();
-        item.setText(Text);
-        item.setImage(image);
-        item.setTime();
-        body.add(item,"Wrap, al right, W 100::80%");
-        body.repaint();
-        body.revalidate();
-    }
-    
-    public void addItemFileRight(String text,String filename , String filesize){
-        chat_Right item = new chat_Right();
-        item.setFile(filename, filesize);
-        item.setText(text);
-        item.setTime();
-        body.add(item,"Wrap, al right, W 100::80%");
-        body.repaint();
-        body.revalidate();
-    }
-    public void addDate(String Date){
-        Chat_Date dateitem = new Chat_Date();
-        dateitem.setDate(Date);
-        body.add(dateitem, "wrap, al center");
-        body.repaint();
-        body.revalidate();
-    
-    }
-    
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
+    public void addItemLeft(String text, String user, Icon... image) {
+        Chat_Left_With_Profile item = new Chat_Left_With_Profile();
+        item.setText(text);
+        item.setImage(image);
+        item.setTime();
+        item.setUserProfile(user);
+        body.add(item, "wrap, w 100::80%");
+        //  ::80% set max with 80%
+        body.repaint();
+        body.revalidate();
+    }
+
+    public void addItemLeft(String text, String user, String[] image) {
+        Chat_Left_With_Profile item = new Chat_Left_With_Profile();
+        item.setText(text);
+        item.setImage(image);
+        item.setTime();
+        item.setUserProfile(user);
+        body.add(item, "wrap, w 100::80%");
+        //  ::80% set max with 80%
+        body.repaint();
+        body.revalidate();
+    }
+
+    public void addItemFile(String text, String user, String fileName, String fileSize) {
+        Chat_Left_With_Profile item = new Chat_Left_With_Profile();
+        item.setText(text);
+        item.setFile(fileName, fileSize);
+        item.setTime();
+        item.setUserProfile(user);
+        body.add(item, "wrap, w 100::80%");
+        //  ::80% set max with 80%
+        body.repaint();
+        body.revalidate();
+    }
+
+    public void addItemRight(String text, Icon... image) {
+        Chat_Right item = new Chat_Right();
+        item.setText(text);
+        item.setImage(image);
+        body.add(item, "wrap, al right, w 100::80%");
+        //  ::80% set max with 80%
+        body.repaint();
+        body.revalidate();
+    }
+
+    public void addItemFileRight(String text, String fileName, String fileSize) {
+        Chat_Right item = new Chat_Right();
+        item.setText(text);
+        item.setFile(fileName, fileSize);
+        body.add(item, "wrap, al right, w 100::80%");
+        //  ::80% set max with 80%
+        body.repaint();
+        body.revalidate();
+    }
+
+    public void addDate(String date) {
+        Chat_Date item = new Chat_Date();
+        item.setDate(date);
+        body.add(item, "wrap, al center");
+        body.repaint();
+        body.revalidate();
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -125,6 +103,7 @@ public class chat_body extends javax.swing.JPanel {
         sp = new javax.swing.JScrollPane();
         body = new javax.swing.JPanel();
 
+        sp.setBorder(null);
         sp.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         body.setBackground(new java.awt.Color(255, 255, 255));
@@ -133,11 +112,11 @@ public class chat_body extends javax.swing.JPanel {
         body.setLayout(bodyLayout);
         bodyLayout.setHorizontalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 811, Short.MAX_VALUE)
+            .addGap(0, 826, Short.MAX_VALUE)
         );
         bodyLayout.setVerticalGroup(
             bodyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 533, Short.MAX_VALUE)
+            .addGap(0, 555, Short.MAX_VALUE)
         );
 
         sp.setViewportView(body);
