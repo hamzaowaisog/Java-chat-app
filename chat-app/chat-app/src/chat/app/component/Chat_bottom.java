@@ -5,10 +5,6 @@
  */
 package chat.app.component;
 
-/**
- *
- * @author RAVEN
- */
 public class Chat_Bottom extends javax.swing.JPanel {
 
     /**
