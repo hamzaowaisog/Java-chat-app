@@ -14,10 +14,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-/**
- *
- * @author RAVEN
- */
 public class Main extends javax.swing.JFrame {
 
     /**
