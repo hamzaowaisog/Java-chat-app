@@ -4,13 +4,15 @@
  */
 package chat.app.event;
 
+import chat.app.model.Model_Register;
+
 /**
  *
  * @author MIR HAMZA
  */
 public interface EventLogin {
     public void login();
-    public void register();
+    public void register(Model_Register data, EventMessage message);
     public void goRegister();
     public void goLogin();
     

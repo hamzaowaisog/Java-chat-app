@@ -4,7 +4,10 @@
  */
 package chat.app.form;
 
+import chat.app.event.EventMessage;
 import chat.app.event.PublicEvent;
+import chat.app.model.Model_Message;
+import chat.app.model.Model_Register;
 
 /**
  *
@@ -37,6 +40,7 @@ public class P_Register extends javax.swing.JPanel {
         cmdBackLogin = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtRePassword = new javax.swing.JPasswordField();
+        lblerror = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -86,6 +90,10 @@ public class P_Register extends javax.swing.JPanel {
 
         txtRePassword.setBackground(new java.awt.Color(255, 255, 255));
 
+        lblerror.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
+        lblerror.setForeground(new java.awt.Color(255, 0, 0));
+        lblerror.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,7 +113,8 @@ public class P_Register extends javax.swing.JPanel {
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtuser, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cmdBackLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblerror, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(20, 20, 20))))
         );
         layout.setVerticalGroup(
@@ -129,7 +138,9 @@ public class P_Register extends javax.swing.JPanel {
                 .addComponent(cmdRegister)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmdBackLogin)
-                .addGap(0, 44, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblerror)
+                .addGap(0, 38, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -143,7 +154,39 @@ public class P_Register extends javax.swing.JPanel {
     }//GEN-LAST:event_cmdBackLoginActionPerformed
 
     private void cmdRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdRegisterActionPerformed
-                PublicEvent.getInstance().getEventLogin().register();
+
+        String username = txtuser.getText().trim();
+        String password = String.valueOf(txtpassword.getPassword());
+        String repass = String.valueOf(txtRePassword.getPassword());
+        
+        if(username.equals("")){
+            txtuser.grabFocus();
+        }
+        else if(password.equals("")){
+            txtpassword.grabFocus();
+        }
+        else if(!repass.equals(password)){
+            txtRePassword.grabFocus();
+        }
+        else{
+            System.out.println("username"+username+"Password"+password );
+            Model_Register data = new Model_Register(username, password);
+            PublicEvent.getInstance().getEventLogin().register(data,new EventMessage() {
+                @Override
+                public void callMessage(Model_Message message) {
+             
+                    if(!message.isAction()){
+                        lblerror.setText(message.getMessage());
+                       
+                    }
+                    else{
+                        PublicEvent.getInstance().getEventLogin().login();
+                    }
+                }
+            });
+        
+        }
+
     }//GEN-LAST:event_cmdRegisterActionPerformed
 
 
@@ -154,6 +197,7 @@ public class P_Register extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lbTitle;
+    private javax.swing.JLabel lblerror;
     private javax.swing.JPasswordField txtRePassword;
     private javax.swing.JPasswordField txtpassword;
     private javax.swing.JTextField txtuser;

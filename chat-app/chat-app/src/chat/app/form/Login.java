@@ -5,7 +5,15 @@
 package chat.app.form;
 
 import chat.app.event.EventLogin;
+import chat.app.event.EventMessage;
 import chat.app.event.PublicEvent;
+import chat.app.model.Model_Message;
+import chat.app.model.Model_Register;
+import chat.app.service.Service;
+import io.socket.client.Ack;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONException;
 
 /**
  *
@@ -44,8 +52,24 @@ public class Login extends javax.swing.JPanel {
                }
 
             @Override
-            public void register() {
-                System.out.println("Register");
+            public void register(Model_Register data, EventMessage message) {
+                try {
+                    System.out.println("Data: " + data.toJsonObject().toString());
+                    System.out.println("client"+Service.getInstance().getClient());
+                    Service.getInstance().getClient().emit("register",data.toJsonObject(),new Ack(){
+                        @Override
+                        public void call(Object... os) {
+                            if(os.length>0){
+                                Model_Message ms = new Model_Message((boolean) os[0] , os[1].toString());
+                                message.callMessage(ms);
+                                
+                            }
+                        }
+                        
+                    });
+                } catch (JSONException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
                }
 
             @Override
@@ -124,7 +148,7 @@ public class Login extends javax.swing.JPanel {
         );
         slideLayout.setVerticalGroup(
             slideLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 332, Short.MAX_VALUE)
+            .addGap(0, 349, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -180,9 +204,9 @@ public class Login extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 100, Short.MAX_VALUE)
+                        .addGap(0, 92, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 100, Short.MAX_VALUE)))
+                        .addGap(0, 91, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE))
         );

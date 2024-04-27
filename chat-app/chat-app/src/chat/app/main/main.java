@@ -8,6 +8,7 @@ package chat.app.main;
 import chat.app.event.EventImageView;
 import chat.app.event.EventMain;
 import chat.app.event.PublicEvent;
+import chat.app.service.Service;
 import chat.app.swing.ComponentResizer;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatArcIJTheme;
@@ -39,6 +40,7 @@ public class Main extends javax.swing.JFrame {
         vIew_Image.setVisible(false);
         home.setVisible(false);
         initEvent();
+        Service.getInstance().startServer();
     }
 
     private void initEvent() {
@@ -153,7 +155,7 @@ public class Main extends javax.swing.JFrame {
         body.add(login, "card4");
         body.setLayer(vIew_Image, javax.swing.JLayeredPane.POPUP_LAYER);
         body.add(vIew_Image, "card3");
-        body.add(home, "card2");
+        body.add(home, "card5");
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
