@@ -5,6 +5,7 @@
 package chat.app.service;
 
 import chat.app.connection.DatabaseConnection;
+import chat.app.model.Model_Login;
 import chat.app.model.Model_Message;
 import chat.app.model.Model_Register;
 import chat.app.model.Model_User_Account;
@@ -99,13 +100,39 @@ public class ServiceUser {
             String username = r.getString(2);
             String gender = r.getString(3);
             String image = r.getString(4);
-            list.add(new Model_User_Account(exituser, username, gender , image, true));
+            list.add(new Model_User_Account(userid, username, gender , image, true));
         }
         return list;
         
     }
     
-   private final String SELECT_USER_ACCOUNT = "select userid,username,gender,imagestring from user_account where status = 1 and userid<>?";  
+    public Model_User_Account login(Model_Login login) throws SQLException{
+        Model_User_Account data = null;
+        PreparedStatement p = con.prepareStatement(LOGIN);
+        p.setString(1, login.getUsername());
+        p.setString(2, login.getPassword());
+        ResultSet r = p.executeQuery();
+        
+        if(r.next()){
+            System.out.println("Data found");
+            int userID = r.getInt(1);
+            String userName = r.getString(2);
+            String gender = r.getString(3);
+            String image = r.getString(4);
+            System.out.println("data extracted");
+            data = new Model_User_Account(userID,userName,gender, image, true);
+            
+        }
+        else{
+            System.out.println("Data not found");
+        }
+        r.close();
+        p.close();
+        return data;
+    }
+    
+   private final String LOGIN = "Select iduser , user_account.username , user_account.gender ,user_account.imagestring from user join user_account on user.iduser = user_account.userid where user.username =BINARY(?) and user.userpass = BINARY(?) and user_account.status='1'"; 
+   private final String SELECT_USER_ACCOUNT = "select userid,username,gender,imagestring from user_account where status = 1 and userid <> ?";  
    private final String INSERT_USER = "insert into user (username,userpass) values(?,?)";
    private final String INSERT_USER_ACCOUNT ="insert into user_account (userid,username) values(?,?)";
    private final String CHECK_USER = "select iduser from user where username=? limit 1";

@@ -5,6 +5,7 @@
 package chat.app.form;
 
 import chat.app.event.PublicEvent;
+import chat.app.model.Model_Login;
 
 /**
  *
@@ -130,7 +131,7 @@ public class P_Login extends javax.swing.JPanel {
     private void cmdLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLoginActionPerformed
         // TODO add your handling code here:
                 
-                    PublicEvent.getInstance().getEventLogin().login();
+                    PublicEvent.getInstance().getEventLogin().login(new Model_Login(txtuser.getText(),String.valueOf(txtpassword.getPassword())));
     }//GEN-LAST:event_cmdLoginActionPerformed
 
 

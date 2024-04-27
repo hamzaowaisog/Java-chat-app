@@ -180,7 +180,7 @@ public class P_Register extends javax.swing.JPanel {
                        
                     }
                     else{
-                        PublicEvent.getInstance().getEventLogin().login();
+                        PublicEvent.getInstance().getEventMain().initchat();
                     }
                 }
             });

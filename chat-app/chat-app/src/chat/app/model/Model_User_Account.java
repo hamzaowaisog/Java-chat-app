@@ -26,6 +26,7 @@ public class Model_User_Account {
 
     public Model_User_Account(Object json) {
         JSONObject obj = (JSONObject) json;
+        System.out.println(obj.toString());
         try{
             userId = obj.getInt("userId");
             userName = obj.getString("userName");

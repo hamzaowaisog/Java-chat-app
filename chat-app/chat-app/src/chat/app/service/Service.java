@@ -61,7 +61,16 @@ public class Service {
                 //list users
                 List<Model_User_Account> users = new ArrayList<>();
                 for(Object o : os){
-                    users.add(new Model_User_Account(o));
+                    Model_User_Account u = new Model_User_Account(o);
+                    if(u.getUserId() != user.getUserId() ){
+                        System.out.println("USer added");
+                        users.add(u);
+                    }
+                    else{
+                        System.out.println(o.toString());
+                        System.out.println(user.getUserId());
+                        System.out.println("user not added");
+                    }
                 }
                 PublicEvent.getInstance().getEventMenuLeft().newUser(users);
             }

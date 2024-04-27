@@ -4,6 +4,7 @@
  */
 package chat.app.service;
 
+import chat.app.model.Model_Login;
 import chat.app.model.Model_Message;
 import chat.app.model.Model_Register;
 import chat.app.model.Model_User_Account;
@@ -70,6 +71,22 @@ public class Service {
                 textArea.append("User Registered :"+t.getUsername()+" Password "+t.getPassword()+"\n");
                 server.getBroadcastOperations().sendEvent("list_user",(Model_User_Account)message.getData());
                 }
+            }
+        });
+        
+        server.addEventListener("login", Model_Login.class, new DataListener<Model_Login>() {
+            @Override
+            public void onData(SocketIOClient sioc, Model_Login t, AckRequest ar) throws Exception {
+         
+                Model_User_Account login = serviceuser.login(t);
+                if(login!= null){
+                    ar.sendAckData(true,login);
+                }
+                else{
+                    ar.sendAckData(false);
+                }
+                
+            
             }
         });
         
