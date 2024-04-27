@@ -6,8 +6,10 @@
 package chat.app.main;
 
 import chat.app.event.EventImageView;
+import chat.app.event.EventMain;
 import chat.app.event.PublicEvent;
 import chat.app.swing.ComponentResizer;
+import com.formdev.flatlaf.intellijthemes.FlatArcDarkIJTheme;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.Icon;
@@ -31,12 +33,26 @@ public class Main extends javax.swing.JFrame {
         com.setMinimumSize(new Dimension(900, 500));
         com.setMaximumSize(Toolkit.getDefaultToolkit().getScreenSize());
         com.setSnapSize(new Dimension(10, 10));
+        login.setVisible(true);
+        loading.setVisible(false);
         vIew_Image.setVisible(false);
-        home.setVisible(true);
+        home.setVisible(false);
         initEvent();
     }
 
     private void initEvent() {
+        PublicEvent.getInstance().addEventMain(new EventMain() {
+            @Override
+            public void showLoading(boolean show) {
+               loading.setVisible(show);
+            }
+
+            @Override
+            public void initchat() {
+                home.setVisible(true);
+               }
+        });
+        
         PublicEvent.getInstance().addEventImageView(new EventImageView() {
             @Override
             public void viewImage(Icon image) {
@@ -66,6 +82,8 @@ public class Main extends javax.swing.JFrame {
         cmdMinimize = new javax.swing.JButton();
         cmdClose = new javax.swing.JButton();
         body = new javax.swing.JLayeredPane();
+        loading = new chat.app.form.Loading();
+        login = new chat.app.form.Login();
         vIew_Image = new chat.app.form.VIew_Image();
         home = new chat.app.form.Home();
 
@@ -130,6 +148,8 @@ public class Main extends javax.swing.JFrame {
         );
 
         body.setLayout(new java.awt.CardLayout());
+        body.add(loading, "card5");
+        body.add(login, "card4");
         body.setLayer(vIew_Image, javax.swing.JLayeredPane.POPUP_LAYER);
         body.add(vIew_Image, "card3");
         body.add(home, "card2");
@@ -231,9 +251,11 @@ public class Main extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Main().setVisible(true);
             }
@@ -247,6 +269,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton cmdClose;
     private javax.swing.JButton cmdMinimize;
     private chat.app.form.Home home;
+    private chat.app.form.Loading loading;
+    private chat.app.form.Login login;
     private javax.swing.JPanel title;
     private chat.app.form.VIew_Image vIew_Image;
     // End of variables declaration//GEN-END:variables
