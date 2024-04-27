@@ -12,6 +12,7 @@ import chat.app.service.Service;
 import chat.app.swing.ComponentResizer;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkIJTheme;
 import com.formdev.flatlaf.intellijthemes.FlatArcIJTheme;
+import io.socket.emitter.Emitter;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.Icon;
@@ -53,6 +54,7 @@ public class Main extends javax.swing.JFrame {
             @Override
             public void initchat() {
                 home.setVisible(true);
+                Service.getInstance().getClient().emit("list_user", Service.getInstance().getUser().getUserId());
                }
         });
         

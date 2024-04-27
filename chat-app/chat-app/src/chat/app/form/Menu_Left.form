@@ -56,9 +56,6 @@
       <SubComponents>
         <Component class="chat.app.component.MenuButton" name="menuMessage">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/chat/app/icon/message.png"/>
-            </Property>
             <Property name="iconSelected" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/chat/app/icon/message_selected.png"/>
             </Property>

@@ -12,14 +12,17 @@ public class Model_Message {
     
    private boolean action;
    private String message;
-
-    public Model_Message(boolean action, String message) {
-        this.action = action;
-        this.message = message;
-    }
+   private Object data;
 
     public Model_Message() {
     }
+
+    public Model_Message(boolean action, String message, Object data) {
+        this.action = action;
+        this.message = message;
+        this.data = data;
+    }
+   
 
     public boolean isAction() {
         return action;
@@ -36,7 +39,15 @@ public class Model_Message {
     public void setMessage(String message) {
         this.message = message;
     }
-   
+
+    public Object getData() {
+        return data;
+    }
+
+    public void setData(Object data) {
+        this.data = data;
+    }
+
    
     
 }

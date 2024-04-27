@@ -9,6 +9,7 @@ import chat.app.event.EventMessage;
 import chat.app.event.PublicEvent;
 import chat.app.model.Model_Message;
 import chat.app.model.Model_Register;
+import chat.app.model.Model_User_Account;
 import chat.app.service.Service;
 import io.socket.client.Ack;
 import java.util.logging.Level;
@@ -62,6 +63,10 @@ public class Login extends javax.swing.JPanel {
                             if(os.length>0){
                                 Model_Message ms = new Model_Message((boolean) os[0] , os[1].toString());
                                 message.callMessage(ms);
+                                if(ms.isAction()){
+                                    Model_User_Account user = new Model_User_Account(os[2]);
+                                    Service.getInstance().setUser(user);
+                                }
                                 
                             }
                         }

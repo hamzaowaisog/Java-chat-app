@@ -1,11 +1,17 @@
 package chat.app.form;
 
 import chat.app.component.Item_People;
+import chat.app.event.EventMenuLeft;
+import chat.app.event.PublicEvent;
+import chat.app.model.Model_User_Account;
 import chat.app.swing.ScrollBar;
+import java.util.ArrayList;
+import java.util.List;
 import net.miginfocom.swing.MigLayout;
 
 public class Menu_Left extends javax.swing.JPanel {
 
+    private List<Model_User_Account> userAccount;
     public Menu_Left() {
         initComponents();
         init();
@@ -14,14 +20,26 @@ public class Menu_Left extends javax.swing.JPanel {
     private void init() {
         sp.setVerticalScrollBar(new ScrollBar());
         menuList.setLayout(new MigLayout("fillx", "0[]0", "0[]0"));
+        userAccount = new ArrayList<>();
+        PublicEvent.getInstance().addEventMenuLeft(new EventMenuLeft() {
+            @Override
+            public void newUser(List<Model_User_Account> users) {
+                for (Model_User_Account d : users){
+                    userAccount.add(d);
+                    menuList.add(new Item_People(d.getUserName()), "wrap");
+                    refreshMenuList();
+                }
+            }
+        });
+        
         showMessage();
     }
 
     private void showMessage() {
         //  test data
         menuList.removeAll();
-        for (int i = 0; i < 20; i++) {
-            menuList.add(new Item_People("People " + i), "wrap");
+        for (Model_User_Account d: userAccount) {
+                    menuList.add(new Item_People(d.getUserName()), "wrap");        
         }
         refreshMenuList();
     }
