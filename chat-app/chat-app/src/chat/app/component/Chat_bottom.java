@@ -59,6 +59,9 @@ public class Chat_Bottom extends javax.swing.JPanel {
             public void keyTyped(KeyEvent e) {
             
                 refresh();
+                if(e.getKeyChar() == 10 && e.isControlDown()){
+                    eventSend(txt);
+                }
             }
             
         });
@@ -84,19 +87,8 @@ public class Chat_Bottom extends javax.swing.JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
            
-                String text = txt.getText().trim();
-                if(!text.equals("")){
-                    Model_Send_Message message = new Model_Send_Message(Service.getInstance().getUser().getUserId(),user.getUserId(),text);
-                    send(message);
-                    PublicEvent.getInstance().getEventChat().sendMessage(message);
-                    txt.setText("");
-                    txt.grabFocus();
-                    refresh();
-                }
-                else{
-                    txt.grabFocus();
-                    
-                }
+                eventSend(txt);
+                
             }
         });
         JButton cmdMore = new JButton();
@@ -128,6 +120,23 @@ public class Chat_Bottom extends javax.swing.JPanel {
         panelMore.setVisible(false);
         add(panelMore,"dock south,h 0!");
          
+    }
+    
+    private void eventSend(JIMSendTextPane txt){
+        String text = txt.getText().trim();
+                if(!text.equals("")){
+                    Model_Send_Message message = new Model_Send_Message(Service.getInstance().getUser().getUserId(),user.getUserId(),text);
+                    send(message);
+                    PublicEvent.getInstance().getEventChat().sendMessage(message);
+                    txt.setText("");
+                    txt.grabFocus();
+                    refresh();
+                }
+                else{
+                    txt.grabFocus();
+                    
+                }
+        
     }
     
     private void send(Model_Send_Message data){
