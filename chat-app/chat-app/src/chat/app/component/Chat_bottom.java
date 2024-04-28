@@ -6,6 +6,7 @@
 package chat.app.component;
 
 import chat.app.event.PublicEvent;
+import chat.app.model.Model_User_Account;
 import chat.app.swing.JIMSendTextPane;
 import chat.app.swing.ScrollBar;
 import java.awt.Color;
@@ -27,6 +28,19 @@ public class Chat_Bottom extends javax.swing.JPanel {
     /**
      * Creates new form Chat_Title
      */
+    
+   private Model_User_Account user;
+
+    public Model_User_Account getUser() {
+        return user;
+    }
+
+    public void setUser(Model_User_Account user) {
+        this.user = user;
+    }
+   
+   
+    
     public Chat_Bottom() {
         initComponents();
         init();

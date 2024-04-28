@@ -8,6 +8,7 @@ package chat.app.main;
 import chat.app.event.EventImageView;
 import chat.app.event.EventMain;
 import chat.app.event.PublicEvent;
+import chat.app.model.Model_User_Account;
 import chat.app.service.Service;
 import chat.app.swing.ComponentResizer;
 import com.formdev.flatlaf.intellijthemes.FlatArcDarkIJTheme;
@@ -57,7 +58,25 @@ public class Main extends javax.swing.JFrame {
                 login.setVisible(false);
                 Service.getInstance().getClient().emit("list_user", Service.getInstance().getUser().getUserId());
                }
+
+            @Override
+            public void selectUser(Model_User_Account user) {
+            
+                home.setUser(user);
+                
+            }
+
+            @Override
+            public void updateUser(Model_User_Account user) {
+            
+                home.updateUser(user);
+                
+            }
+            
+            
         });
+        
+       
         
         PublicEvent.getInstance().addEventImageView(new EventImageView() {
             @Override

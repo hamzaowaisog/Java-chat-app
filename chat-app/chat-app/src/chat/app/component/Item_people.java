@@ -1,5 +1,6 @@
 package chat.app.component;
 
+import chat.app.event.PublicEvent;
 import chat.app.model.Model_User_Account;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
@@ -8,6 +9,7 @@ import java.awt.event.MouseEvent;
 public class Item_People extends javax.swing.JPanel {
 
     private final Model_User_Account user;
+    private boolean mouseOver;
     
     public Item_People(Model_User_Account user) {
         this.user = user;
@@ -31,12 +33,24 @@ public class Item_People extends javax.swing.JPanel {
             @Override
             public void mouseEntered(MouseEvent me) {
                 setBackground(new Color(230, 230, 230));
+                mouseOver = true;
             }
 
             @Override
             public void mouseExited(MouseEvent me) {
                 setBackground(new Color(242, 242, 242));
+                mouseOver = false;
             }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            
+                if(mouseOver){
+                    PublicEvent.getInstance().getEventMain().selectUser(user);
+                }
+            }
+            
+            
         });
     }
 
@@ -59,7 +73,7 @@ public class Item_People extends javax.swing.JPanel {
 
         txtStatus.setFont(new java.awt.Font("sansserif", 2, 12)); // NOI18N
         txtStatus.setForeground(new java.awt.Color(117, 117, 117));
-        txtStatus.setText("Name");
+        txtStatus.setText("New User");
 
         activeStatus.setIsActive(true);
 
@@ -77,7 +91,7 @@ public class Item_People extends javax.swing.JPanel {
                         .addComponent(txtStatus)
                         .addGap(3, 3, 3)
                         .addComponent(activeStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 102, Short.MAX_VALUE)))
+                        .addGap(0, 83, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

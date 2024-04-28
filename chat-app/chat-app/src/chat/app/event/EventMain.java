@@ -4,6 +4,8 @@
  */
 package chat.app.event;
 
+import chat.app.model.Model_User_Account;
+
 /**
  *
  * @author MIR HAMZA
@@ -11,6 +13,8 @@ package chat.app.event;
 public interface EventMain {
     public void showLoading(boolean show);
     public void initchat();
+    public void selectUser (Model_User_Account user);
+    public void updateUser(Model_User_Account user);
     
     
 }
