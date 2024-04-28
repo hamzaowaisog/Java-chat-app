@@ -7,7 +7,9 @@ package chat.app.service;
 import chat.app.model.Model_Client;
 import chat.app.model.Model_Login;
 import chat.app.model.Model_Message;
+import chat.app.model.Model_Receive_Message;
 import chat.app.model.Model_Register;
+import chat.app.model.Model_Send_Message;
 import chat.app.model.Model_User_Account;
 import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.SocketIOServer;
@@ -114,6 +116,14 @@ public class Service {
             }
         });
         
+        server.addEventListener("send_to_user", Model_Send_Message.class, new DataListener<Model_Send_Message>() {
+            @Override
+            public void onData(SocketIOClient sioc, Model_Send_Message t, AckRequest ar) throws Exception {
+                sendToClient(t);     
+            }
+        });
+        
+        
         server.addDisconnectListener(new DisconnectListener() {
             @Override
             public void onDisconnect(SocketIOClient sioc) {
@@ -158,6 +168,15 @@ public class Service {
         return 0;
     }
     
+    private void sendToClient(Model_Send_Message data){
+        for(Model_Client c:listClient){
+            if(c.getUser().getUserId() == data.getToUserID()){
+                c.getClient().sendEvent("receive_ms", new Model_Receive_Message(data.getFromUserID(), data.getText()));
+                break;
+            }
+        }
+        
+    }
     
 
     

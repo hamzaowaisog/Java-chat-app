@@ -6,7 +6,9 @@
 package chat.app.component;
 
 import chat.app.event.PublicEvent;
+import chat.app.model.Model_Send_Message;
 import chat.app.model.Model_User_Account;
+import chat.app.service.Service;
 import chat.app.swing.JIMSendTextPane;
 import chat.app.swing.ScrollBar;
 import java.awt.Color;
@@ -83,7 +85,9 @@ public class Chat_Bottom extends javax.swing.JPanel {
            
                 String text = txt.getText().trim();
                 if(!text.equals("")){
-                    PublicEvent.getInstance().getEventChat().sendMessage(text);
+                    Model_Send_Message message = new Model_Send_Message(Service.getInstance().getUser().getUserId(),user.getUserId(),text);
+                    send(message);
+                    PublicEvent.getInstance().getEventChat().sendMessage(message);
                     txt.setText("");
                     txt.grabFocus();
                     refresh();
@@ -97,6 +101,11 @@ public class Chat_Bottom extends javax.swing.JPanel {
         panel.add(cmd);
         add(panel);
          
+    }
+    
+    private void send(Model_Send_Message data){
+        Service.getInstance().getClient().emit("send_to_user", data.toJsonObject());
+        
     }
     
     private void refresh(){

@@ -4,10 +4,14 @@
  */
 package chat.app.event;
 
+import chat.app.model.Model_Receive_Message;
+import chat.app.model.Model_Send_Message;
+
 /**
  *
  * @author MIR HAMZA
  */
 public interface EventChat {
-    public void sendMessage(String text);
+    public void sendMessage(Model_Send_Message data);
+    public void receiveMessage (Model_Receive_Message data );
 }
