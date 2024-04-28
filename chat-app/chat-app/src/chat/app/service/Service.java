@@ -75,6 +75,22 @@ public class Service {
                 PublicEvent.getInstance().getEventMenuLeft().newUser(users);
             }
         });
+        
+        client.on("user_status", new Emitter.Listener() {
+            @Override
+            public void call(Object... os) {
+            
+                int userId = (Integer) os[0];
+                boolean status = (Boolean) os[1];
+                if(status){
+                    PublicEvent.getInstance().getEventMenuLeft().userConnect(userId);
+                }
+                else{
+                    PublicEvent.getInstance().getEventMenuLeft().userDisconnect(userId);
+                }
+            }
+        });
+        
         client.open();
         }
         catch(Exception e){

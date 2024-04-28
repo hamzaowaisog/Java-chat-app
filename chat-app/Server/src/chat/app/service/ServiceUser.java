@@ -5,6 +5,7 @@
 package chat.app.service;
 
 import chat.app.connection.DatabaseConnection;
+import chat.app.model.Model_Client;
 import chat.app.model.Model_Login;
 import chat.app.model.Model_Message;
 import chat.app.model.Model_Register;
@@ -100,7 +101,7 @@ public class ServiceUser {
             String username = r.getString(2);
             String gender = r.getString(3);
             String image = r.getString(4);
-            list.add(new Model_User_Account(userid, username, gender , image, true));
+            list.add(new Model_User_Account(userid, username, gender , image, checkUserStatus(userid)));
         }
         return list;
         
@@ -129,6 +130,18 @@ public class ServiceUser {
         r.close();
         p.close();
         return data;
+    }
+    
+    private boolean checkUserStatus(int userID){
+        List<Model_Client> clients = Service.getInstance(null).getListClient();
+        for (Model_Client c : clients){
+            if(c.getUser().getUserId() == userID){
+                System.out.println("active");
+                return true;
+            }
+        }
+        System.out.println("not Active");
+        return false;
     }
     
    private final String LOGIN = "Select iduser , user_account.username , user_account.gender ,user_account.imagestring from user join user_account on user.iduser = user_account.userid where user.username =BINARY(?) and user.userpass = BINARY(?) and user_account.status='1'"; 

@@ -4,6 +4,7 @@
  */
 package chat.app.service;
 
+import chat.app.model.Model_Client;
 import chat.app.model.Model_Login;
 import chat.app.model.Model_Message;
 import chat.app.model.Model_Register;
@@ -14,7 +15,9 @@ import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DataListener;
+import com.corundumstudio.socketio.listener.DisconnectListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,6 +33,7 @@ public class Service {
     private final int PORT_NUMBER =9999;
     private JTextArea textArea;
     private ServiceUser serviceuser;
+    private List<Model_Client> listClient;
     
     public static Service getInstance(JTextArea textArea){
         if(instance == null){
@@ -47,6 +51,7 @@ public class Service {
     public Service(JTextArea textArea) throws SQLException, ClassNotFoundException{
         this.textArea = textArea;
         serviceuser = new ServiceUser();
+        listClient = new ArrayList<>();
     }
     
     public void startServer(){
@@ -70,6 +75,7 @@ public class Service {
                 if(message.isAction()){
                 textArea.append("User Registered :"+t.getUsername()+" Password "+t.getPassword()+"\n");
                 server.getBroadcastOperations().sendEvent("list_user",(Model_User_Account)message.getData());
+                    addClient(sioc, (Model_User_Account)message.getData());
                 }
             }
         });
@@ -81,6 +87,8 @@ public class Service {
                 Model_User_Account login = serviceuser.login(t);
                 if(login!= null){
                     ar.sendAckData(true,login);
+                    addClient(sioc, login);
+                    userConnect(login.getUserId());
                 }
                 else{
                     ar.sendAckData(false);
@@ -106,9 +114,51 @@ public class Service {
             }
         });
         
+        server.addDisconnectListener(new DisconnectListener() {
+            @Override
+            public void onDisconnect(SocketIOClient sioc) {
+           
+                int userID = removeClient(sioc);
+                if(userID !=0){
+                    userDisconnect(userID);
+                }
+            }
+        });
         server.start();
         textArea.append("Server has started on Port :"+PORT_NUMBER+"\n");
     }
+    
+    
+    private void userConnect(int userID){
+        server.getBroadcastOperations().sendEvent("user_status", userID,true);
+    }
+    
+    private void userDisconnect (int userID){
+        server.getBroadcastOperations().sendEvent("user_status", userID,false);
+    }
+    
+    
+    private void addClient (SocketIOClient client , Model_User_Account user){
+        listClient.add(new Model_Client(client,user));
+    }
+
+    public List<Model_Client> getListClient() {
+        return listClient;
+    }
+    
+    public int removeClient(SocketIOClient client){
+        for (Model_Client d : listClient){
+            if(d.getClient() == client){
+                listClient.remove(d);
+                return d.getUser().getUserId();
+                
+            }
+        }
+        
+        return 0;
+    }
+    
+    
 
     
 }
