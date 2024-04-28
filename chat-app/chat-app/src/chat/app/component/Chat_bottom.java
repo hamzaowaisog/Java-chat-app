@@ -49,7 +49,8 @@ public class Chat_Bottom extends javax.swing.JPanel {
     }
     
     public void init(){
-        setLayout(new MigLayout("fillx, filly","0[fill]0[]0[]2","2[fill]2"));
+        mig = new MigLayout("fillx, filly","0[fill]0[]0[]2","2[fill]2[]0");
+        setLayout(mig);
         JScrollPane scroll = new JScrollPane();
         JIMSendTextPane txt = new JIMSendTextPane();
         scroll.setBorder(null);
@@ -71,7 +72,7 @@ public class Chat_Bottom extends javax.swing.JPanel {
         add(sb);
         add(scroll, "w 100%");
         JPanel panel = new JPanel();
-        panel.setLayout(new MigLayout("filly","0[]0","0[bottom]0"));
+        panel.setLayout(new MigLayout("filly","0[]3[]0","0[bottom]0"));
         panel.setPreferredSize(new Dimension(30, 28));
         panel.setBackground(Color.white);
         JButton cmd = new JButton();
@@ -98,8 +99,34 @@ public class Chat_Bottom extends javax.swing.JPanel {
                 }
             }
         });
+        JButton cmdMore = new JButton();
+        cmdMore.setBorder(null);
+        cmdMore.setContentAreaFilled(false);
+        cmdMore.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        cmdMore.setIcon(new ImageIcon(getClass().getResource("/chat/app/icon/more_disable.png")));
+        cmdMore.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(panelMore.isVisible()){
+                   cmdMore.setIcon(new ImageIcon(getClass().getResource("/chat/app/icon/more_disable.png")));
+                   panelMore.setVisible(false);
+                   mig.setComponentConstraints(panelMore,"dock south,h 0!" );
+                   revalidate();
+                }
+                else{
+                   cmdMore.setIcon(new ImageIcon(getClass().getResource("/chat/app/icon/more.png")));
+                   panelMore.setVisible(true);
+                   mig.setComponentConstraints(panelMore,"dock south,h 170!" );
+                   revalidate();
+                }
+            }
+        });
+        panel.add(cmdMore);
         panel.add(cmd);
-        add(panel);
+        add(panel,"wrap");
+        panelMore = new Panel_More();
+        panelMore.setVisible(false);
+        add(panelMore,"dock south,h 0!");
          
     }
     
@@ -111,6 +138,9 @@ public class Chat_Bottom extends javax.swing.JPanel {
     private void refresh(){
         revalidate();
     }
+    
+    private MigLayout mig;
+    private Panel_More panelMore;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -135,6 +165,7 @@ public class Chat_Bottom extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
