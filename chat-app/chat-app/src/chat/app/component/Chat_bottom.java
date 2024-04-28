@@ -61,6 +61,7 @@ public class Chat_Bottom extends javax.swing.JPanel {
                 refresh();
                 if(e.getKeyChar() == 10 && e.isControlDown()){
                     eventSend(txt);
+                    
                 }
             }
             
