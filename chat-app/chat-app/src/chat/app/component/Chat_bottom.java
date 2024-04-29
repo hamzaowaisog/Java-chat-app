@@ -5,6 +5,7 @@
  */
 package chat.app.component;
 
+import chat.app.app.MessageType;
 import chat.app.event.PublicEvent;
 import chat.app.model.Model_Send_Message;
 import chat.app.model.Model_User_Account;
@@ -39,6 +40,7 @@ public class Chat_Bottom extends javax.swing.JPanel {
 
     public void setUser(Model_User_Account user) {
         this.user = user;
+        panelMore.setUser(user);
     }
    
    
@@ -126,7 +128,7 @@ public class Chat_Bottom extends javax.swing.JPanel {
     private void eventSend(JIMSendTextPane txt){
         String text = txt.getText().trim();
                 if(!text.equals("")){
-                    Model_Send_Message message = new Model_Send_Message(Service.getInstance().getUser().getUserId(),user.getUserId(),text);
+                    Model_Send_Message message = new Model_Send_Message(MessageType.TEXT,Service.getInstance().getUser().getUserId(),user.getUserId(),text);
                     send(message);
                     PublicEvent.getInstance().getEventChat().sendMessage(message);
                     txt.setText("");

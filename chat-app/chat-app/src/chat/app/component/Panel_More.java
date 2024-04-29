@@ -4,9 +4,14 @@
  */
 package chat.app.component;
 
+import chat.app.app.MessageType;
 import chat.app.emoji.Emoji;
 import chat.app.emoji.Model_Emoji;
+import chat.app.event.PublicEvent;
 import chat.app.main.Main;
+import chat.app.model.Model_Send_Message;
+import chat.app.model.Model_User_Account;
+import chat.app.service.Service;
 import chat.app.swing.ScrollBar;
 import chat.app.swing.WrapLayout;
 import java.awt.Color;
@@ -34,6 +39,19 @@ public class Panel_More extends javax.swing.JPanel {
     /**
      * Creates new form Panel_More
      */
+    
+    private Model_User_Account user;
+
+    public Model_User_Account getUser() {
+        return user;
+    }
+
+    public void setUser(Model_User_Account user) {
+        this.user = user;
+    }
+   
+   
+    
     public Panel_More() {
         initComponents();
         init();
@@ -86,12 +104,7 @@ public class Panel_More extends javax.swing.JPanel {
          
               panelDetail.removeAll();
               for(Model_Emoji d : Emoji.getInstance().getStyle1()){
-                  JButton c = new JButton(d.getIcon());
-                  c.setName(d.getId()+"");
-                  c.setBorder(new EmptyBorder(3,3,3,3));
-                  c.setCursor(new Cursor(Cursor.HAND_CURSOR));
-                  c.setContentAreaFilled(false);
-                  panelDetail.add(c);
+                  panelDetail.add(getButton(d));
               }
               
               
@@ -114,12 +127,7 @@ public class Panel_More extends javax.swing.JPanel {
               cmd.setSelected(true);
               panelDetail.removeAll();
               for(Model_Emoji d : Emoji.getInstance().getStyle2()){
-                  JButton c = new JButton(d.getIcon());
-                  c.setName(d.getId()+"");
-                  c.setBorder(new EmptyBorder(3,3,3,3));
-                  c.setCursor(new Cursor(Cursor.HAND_CURSOR));
-                  c.setContentAreaFilled(false);
-                  panelDetail.add(c);
+                  panelDetail.add(getButton(d));
               }
               
               
@@ -131,6 +139,29 @@ public class Panel_More extends javax.swing.JPanel {
     
       return cmd;
     }
+    
+    private JButton getButton(Model_Emoji data){
+        JButton cmd = new JButton(data.getIcon());
+        cmd.setName(data.getId()+"");
+        cmd.setBorder(new EmptyBorder(3,3,3,3));
+        cmd.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        cmd.setContentAreaFilled(false);
+        cmd.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Model_Send_Message message = new Model_Send_Message(MessageType.EMOJI,Service.getInstance().getUser().getUserId(),user.getUserId(),data.getId()+"");
+                sendMessage(message);
+                PublicEvent.getInstance().getEventChat().sendMessage(message);
+            }
+        });
+        return cmd;                 
+        
+    }
+    
+    private void sendMessage(Model_Send_Message data){
+        Service.getInstance().getClient().emit("send_to_user", data.toJsonObject());
+    }
+    
     private void clearSelected(){
         for(Component c : panelHeader.getComponents()){
             if(c instanceof OptionButton){
