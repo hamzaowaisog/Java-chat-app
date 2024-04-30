@@ -1,5 +1,6 @@
 package chat.app.component;
 
+import chat.app.model.Model_FIle_Sender;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.FlowLayout;
@@ -56,16 +57,15 @@ public class Chat_Item extends javax.swing.JLayeredPane {
         add(layer);
     }
 
-    public void setImage(boolean right, Icon... image) {
-        if(image.length>0){
-            JLayeredPane layer = new JLayeredPane();
+    public void setImage(boolean right, Model_FIle_Sender filesender) {
+        JLayeredPane layer = new JLayeredPane();
         layer.setLayout(new FlowLayout(right ? FlowLayout.RIGHT : FlowLayout.LEFT));
         layer.setBorder(new EmptyBorder(0, 5, 0, 5));
         Chat_Image chatImage = new Chat_Image(right);
-        chatImage.addImage(image);
+        chatImage.addImage(filesender);
         layer.add(chatImage);
         add(layer);
-        }
+        
     }
 
     public void setImage(boolean right, String... image) {

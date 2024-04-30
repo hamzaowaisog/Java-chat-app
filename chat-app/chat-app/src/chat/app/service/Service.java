@@ -6,11 +6,15 @@ package chat.app.service;
 
 
 import chat.app.event.PublicEvent;
+import chat.app.model.Model_FIle_Sender;
 import chat.app.model.Model_Receive_Message;
+import chat.app.model.Model_Send_Message;
 import chat.app.model.Model_User_Account;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTextArea;
@@ -24,6 +28,7 @@ public class Service {
     private Socket client;
     private final int PORT_NUMBER =9999;
     private final String IP = "localhost";
+    private List<Model_FIle_Sender> fileSender;
     
     private Model_User_Account user;
 
@@ -39,7 +44,23 @@ public class Service {
         return client;
     }
     
+    public Model_FIle_Sender addFile(File file, Model_Send_Message message) throws IOException{
+        Model_FIle_Sender data = new Model_FIle_Sender(file, client, message);
+        message.setFile(data);
+        fileSender.add(data);
+        if(fileSender.size() == 1){
+            data.initSend();
+        }
+        return data;
+
+    }
     
+    public void fileSendFinish(Model_FIle_Sender data) throws IOException{
+        fileSender.remove(data);
+        if(!fileSender.isEmpty()){
+            fileSender.get(0).initSend();
+        }
+    }
     
     public static Service getInstance(){
         if(instance == null){
@@ -49,6 +70,7 @@ public class Service {
     }
     
     public Service(){
+        fileSender = new ArrayList<>();
         
     }
     
