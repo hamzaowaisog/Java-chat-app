@@ -2,6 +2,7 @@ package chat.app.component;
 
 import chat.app.event.PublicEvent;
 import chat.app.model.Model_FIle_Sender;
+import chat.app.model.Model_Receive_Image;
 import chat.app.swing.PictureBox;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -31,14 +32,12 @@ public class Chat_Image extends javax.swing.JLayeredPane {
        
     }
 
-    public void addImage(String... images) {
-        for (String image : images) {
+    public void addImage(Model_Receive_Image dataImage) {
             Image_Item pic = new Image_Item();
-            pic.setPreferredSize(new Dimension(200, 200));  //  for test update next
-            pic.setImage(image);
+            pic.setPreferredSize(new Dimension(dataImage.getWidth(),dataImage.getHeight()));  //  for test update next
+            pic.setImage(dataImage);
             //  addEvent(pic, image);
             add(pic, "wrap");
-        }
     }
 
     private void addEvent(Component com, Icon image) {

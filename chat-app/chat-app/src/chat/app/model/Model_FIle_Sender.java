@@ -4,6 +4,7 @@
  */
 package chat.app.model;
 
+import chat.app.event.EventFileSender;
 import chat.app.service.Service;
 import io.socket.client.Ack;
 import io.socket.client.Socket;
@@ -24,6 +25,17 @@ public class Model_FIle_Sender {
     private long fileSize;
     private RandomAccessFile accFile;
     private Socket socket;
+    private EventFileSender event;
+
+    public EventFileSender getEvent() {
+        return event;
+    }
+
+    public void addEvent(EventFileSender event) {
+        this.event = event;
+    }
+    
+    
 
     public Model_Send_Message getMessage() {
         return message;
@@ -135,6 +147,9 @@ public class Model_FIle_Sender {
     
     public void startSend(int fileID) throws IOException{
         this.fileID = fileID;
+        if(event != null){
+            event.onStartSending();
+        }
         sendingFile();
          
         
@@ -163,10 +178,16 @@ public class Model_FIle_Sender {
              if(act){
                  try{
                      if(!data.isFinish()){
+                         if (event != null){
+                             event.onSending(getPercentage());
+                         }
                          sendingFile();
                      }
                      else{
                          Service.getInstance().fileSendFinish(Model_FIle_Sender.this);
+                         if (event != null){
+                             event.onFinish();
+                         }
                      }
                  }
                  catch(IOException e){
