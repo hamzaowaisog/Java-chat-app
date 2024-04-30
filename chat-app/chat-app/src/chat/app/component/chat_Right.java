@@ -2,6 +2,8 @@ package chat.app.component;
 
 import chat.app.model.Model_FIle_Sender;
 import java.awt.Color;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.Icon;
 
 public class Chat_Right extends javax.swing.JLayeredPane {
@@ -38,7 +40,10 @@ public class Chat_Right extends javax.swing.JLayeredPane {
     }
 
     public void setTime() {
-        txt.setTime("10:30 PM");    //  Testing
+        LocalTime currentTime = LocalTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
+        String formattedTime = currentTime.format(formatter);
+        txt.setTime(formattedTime);
     }
 
     @SuppressWarnings("unchecked")

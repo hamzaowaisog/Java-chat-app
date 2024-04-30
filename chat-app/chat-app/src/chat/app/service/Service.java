@@ -5,8 +5,10 @@
 package chat.app.service;
 
 
+import chat.app.event.EventFileReceiver;
 import chat.app.event.PublicEvent;
 import chat.app.model.Model_FIle_Sender;
+import chat.app.model.Model_File_Receiver;
 import chat.app.model.Model_Receive_Message;
 import chat.app.model.Model_Send_Message;
 import chat.app.model.Model_User_Account;
@@ -29,6 +31,7 @@ public class Service {
     private final int PORT_NUMBER =9999;
     private final String IP = "localhost";
     private List<Model_FIle_Sender> fileSender;
+    private List<Model_File_Receiver> fileReceiver;
     
     private Model_User_Account user;
 
@@ -62,6 +65,21 @@ public class Service {
         }
     }
     
+    public void fileReceiveFinish(Model_File_Receiver data) throws IOException{
+        fileReceiver.remove(data);
+        if(!fileReceiver.isEmpty()){
+            fileReceiver.get(0).initReceive();
+        }
+    }
+    
+    public void addFileReceiver (int fileID , EventFileReceiver event) throws IOException{
+        Model_File_Receiver data = new Model_File_Receiver(fileID, client, event);
+        fileReceiver.add(data);
+        if(fileReceiver.size() == 1){
+            data.initReceive();
+        }
+    }
+    
     public static Service getInstance(){
         if(instance == null){
             instance = new Service();
@@ -71,6 +89,7 @@ public class Service {
     
     public Service(){
         fileSender = new ArrayList<>();
+        fileReceiver = new ArrayList<>();
         
     }
     
@@ -129,6 +148,8 @@ public class Service {
             error(e);
         }
     }
+    
+    
     
     public void error(Exception e){
         System.err.println(e);

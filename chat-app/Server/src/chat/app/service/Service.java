@@ -13,6 +13,7 @@ import chat.app.model.Model_Package_Sender;
 import chat.app.model.Model_Receive_Image;
 import chat.app.model.Model_Receive_Message;
 import chat.app.model.Model_Register;
+import chat.app.model.Model_Request_File;
 import chat.app.model.Model_Send_Message;
 import chat.app.model.Model_User_Account;
 import com.corundumstudio.socketio.AckRequest;
@@ -155,6 +156,31 @@ public class Service {
             }
         });
         
+        server.addEventListener("get_file", Integer.class, new DataListener<Integer>() {
+            @Override
+            public void onData(SocketIOClient sioc, Integer t, AckRequest ar) throws Exception {
+         
+                Model_File file = serviceFile.initFIle(t);
+                long fileSize = serviceFile.getFileSize(t);
+                ar.sendAckData(file.getFileExtension(),fileSize);
+                
+            }
+        });
+        
+        server.addEventListener("request_file", Model_Request_File.class, new DataListener<Model_Request_File>() {
+            @Override
+            public void onData(SocketIOClient sioc, Model_Request_File t, AckRequest ar) throws Exception {
+        
+                byte[] data = serviceFile.getFileData(t.getCurrentLength(), t.getFileID());
+                if(data != null){
+                    ar.sendAckData(data);
+                }
+                else{
+                    ar.sendAckData();
+                }
+                
+            }
+        });
         
         
         server.addDisconnectListener(new DisconnectListener() {

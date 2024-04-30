@@ -1,10 +1,14 @@
 package chat.app.component;
 
+import chat.app.event.EventFileReceiver;
 import chat.app.event.EventFileSender;
 import chat.app.model.Model_FIle_Sender;
 import chat.app.model.Model_Receive_Image;
+import chat.app.service.Service;
 import chat.app.swing.blurHash.BlurHash;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -22,6 +26,31 @@ public class Image_Item extends javax.swing.JLayeredPane {
         img.setRGB(0, 0, width, height, data, 0, width);
         Icon icon = new ImageIcon(img);
         pic.setImage(icon);
+        try {
+            Service.getInstance().addFileReceiver(dataImage.getFileID(), new EventFileReceiver() {
+                @Override
+                public void onReceiving(double percentage) {
+                    progress.setValue((int) percentage);
+            
+                }
+
+                @Override
+                public void onStartReceiving() {
+                
+                }
+
+                @Override
+                public void onFinish(File file) {
+                
+                    progress.setVisible(false);
+                    pic.setImage(new ImageIcon(file.getAbsolutePath()));
+                    
+                }
+            });
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
         public void setImage(Icon image, Model_FIle_Sender filesender) {
         filesender.addEvent(new EventFileSender() {
