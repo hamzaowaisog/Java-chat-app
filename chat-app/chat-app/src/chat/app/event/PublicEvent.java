@@ -8,6 +8,8 @@ public class PublicEvent {
     private EventLogin eventlogin;
     private EventMain eventmain;
     private EventMenuLeft eventMenuLeft;
+    private EventInsertMessage insertmessage;
+    private EventFetchMessage fetchmessage;
 
     public static PublicEvent getInstance() {
         if (instance == null) {
@@ -54,4 +56,22 @@ public class PublicEvent {
     public EventMenuLeft getEventMenuLeft(){
         return eventMenuLeft;
     }
+
+    public EventInsertMessage getInsertmessage() {
+        return insertmessage;
+    }
+
+    public void setInsertmessage(EventInsertMessage insertmessage) {
+        this.insertmessage = insertmessage;
+    }
+
+    public EventFetchMessage getFetchmessage() {
+        return fetchmessage;
+    }
+
+    public void setFetchmessage(EventFetchMessage fetchmessage) {
+        this.fetchmessage = fetchmessage;
+    }
+    
+    
 }

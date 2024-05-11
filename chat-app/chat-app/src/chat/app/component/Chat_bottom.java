@@ -7,6 +7,7 @@ package chat.app.component;
 
 import chat.app.app.MessageType;
 import chat.app.event.PublicEvent;
+import chat.app.model.Model_Message_Insert;
 import chat.app.model.Model_Send_Message;
 import chat.app.model.Model_User_Account;
 import chat.app.service.Service;
@@ -131,6 +132,10 @@ public class Chat_Bottom extends javax.swing.JPanel {
                     Model_Send_Message message = new Model_Send_Message(MessageType.TEXT,Service.getInstance().getUser().getUserId(),user.getUserId(),text);
                     send(message);
                     PublicEvent.getInstance().getEventChat().sendMessage(message);
+                    Model_Message_Insert insert = new Model_Message_Insert(Service.getInstance().getUser().getUserId(), text, true, user.getUserId());
+                    insert(insert);
+                    Model_Message_Insert insert1 = new Model_Message_Insert(user.getUserId(), text, false, Service.getInstance().getUser().getUserId());
+                    insert(insert1);
                     txt.setText("");
                     txt.grabFocus();
                     refresh();
@@ -140,6 +145,11 @@ public class Chat_Bottom extends javax.swing.JPanel {
                     
                 }
         
+    }
+    private void insert(Model_Message_Insert insert){
+        System.out.println("user_id"+insert.getUser_id());
+        System.out.println("Receiver_id"+insert.getReceiver_id());
+        Service.getInstance().getClient().emit("sending_message",insert.toJSONObject());
     }
     
     private void send(Model_Send_Message data){

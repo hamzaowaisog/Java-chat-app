@@ -47,6 +47,7 @@ public class Item_People extends javax.swing.JPanel {
             
                 if(mouseOver){
                     PublicEvent.getInstance().getEventMain().selectUser(user);
+                    
                 }
             }
             

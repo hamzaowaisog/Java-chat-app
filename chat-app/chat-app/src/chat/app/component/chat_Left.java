@@ -2,6 +2,7 @@ package chat.app.component;
 
 import chat.app.model.Model_Receive_Image;
 import java.awt.Color;
+import java.sql.Time;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import javax.swing.Icon;
@@ -44,6 +45,12 @@ public class Chat_Left extends javax.swing.JLayeredPane {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
         String formattedTime = currentTime.format(formatter);
         txt.setTime(formattedTime);    //  Testing
+    }
+    public void setTime (LocalTime time){
+        System.out.println(time);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
+        String formattedTime = time.format(formatter);
+        txt.setTime(formattedTime.toString());
     }
 
     @SuppressWarnings("unchecked")

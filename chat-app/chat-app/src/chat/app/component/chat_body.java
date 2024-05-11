@@ -2,6 +2,7 @@ package chat.app.component;
 
 import chat.app.app.MessageType;
 import chat.app.emoji.Emoji;
+import chat.app.model.Model_Message_Fetch;
 import chat.app.model.Model_Receive_Message;
 import chat.app.model.Model_Send_Message;
 import chat.app.swing.ScrollBar;
@@ -39,6 +40,13 @@ public class Chat_Body extends javax.swing.JPanel {
         body.setLayout(new MigLayout("fillx", "", "5[]5"));
         sp.setVerticalScrollBar(new ScrollBar());
         sp.getVerticalScrollBar().setBackground(Color.WHITE);
+    }
+    
+    public void addItemLeft(Model_Message_Fetch data){
+        Chat_Left item = new Chat_Left();
+        item.setText(data.getMessage());
+        item.setTime(data.getTime());
+        body.add(item,"wrap, w 100:: 80%");
     }
 
     public void addItemLeft(Model_Receive_Message data) {
@@ -89,6 +97,13 @@ public class Chat_Body extends javax.swing.JPanel {
         //  ::80% set max with 80%
         body.repaint();
         body.revalidate();
+    }
+    
+    public void addItemRight(Model_Message_Fetch data){
+        Chat_Right item = new Chat_Right();
+        item.setText(data.getMessage());
+        item.setTime(data.getTime());
+        body.add(item, "wrap, al right, w 100::80%");
     }
 
     public void addItemRight(Model_Send_Message data) {

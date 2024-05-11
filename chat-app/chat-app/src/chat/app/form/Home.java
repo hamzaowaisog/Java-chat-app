@@ -1,12 +1,15 @@
 package chat.app.form;
 
+import chat.app.model.Model_Data_message;
+import chat.app.model.Model_Message_Fetch;
 import chat.app.model.Model_User_Account;
+import chat.app.service.Service;
 import net.miginfocom.swing.MigLayout;
+import org.json.JSONObject;
 
 public class Home extends javax.swing.JLayeredPane {
 
     private Chat chat;
-    
     public Home() {
         initComponents();
         init();
@@ -24,6 +27,7 @@ public class Home extends javax.swing.JLayeredPane {
     public void setUser(Model_User_Account user){
         chat.setUser(user);
         chat.setVisible(true);
+
     }
     
     public void updateUser(Model_User_Account user){

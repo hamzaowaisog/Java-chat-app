@@ -6,9 +6,12 @@ package chat.app.service;
 
 import chat.app.app.MessageType;
 import chat.app.model.Model_Client;
+import chat.app.model.Model_Data_message;
 import chat.app.model.Model_File;
 import chat.app.model.Model_Login;
 import chat.app.model.Model_Message;
+import chat.app.model.Model_Message_Fetch;
+import chat.app.model.Model_Message_Insert;
 import chat.app.model.Model_Package_Sender;
 import chat.app.model.Model_Receive_Image;
 import chat.app.model.Model_Receive_Message;
@@ -43,6 +46,7 @@ public class Service {
     private ServiceUser serviceuser;
     private List<Model_Client> listClient;
     private ServiceFile serviceFile;
+    private ServiceMessages servicemessage;
     
     public static Service getInstance(JTextArea textArea){
         if(instance == null){
@@ -62,6 +66,7 @@ public class Service {
         serviceuser = new ServiceUser();
         serviceFile = new ServiceFile();
         listClient = new ArrayList<>();
+        servicemessage = new ServiceMessages();
         
     }
     
@@ -122,6 +127,30 @@ public class Service {
             }
                 
                 
+            }
+        });
+        
+        server.addEventListener("sending_message", Model_Message_Insert.class, new DataListener<Model_Message_Insert>() {
+            @Override
+            public void onData(SocketIOClient sioc, Model_Message_Insert t, AckRequest ar) throws Exception {
+                servicemessage.update_message(t);
+                
+            }
+        });
+        
+        
+        server.addEventListener("fetch_message", Model_Data_message.class, new DataListener<Model_Data_message>() {
+            @Override
+            public void onData(SocketIOClient sioc, Model_Data_message t, AckRequest ar) throws Exception {
+                System.out.println("STatted to fetch");
+                try {
+                    System.out.println("fetching messages");
+                    List<Model_Message_Fetch> list = servicemessage.fetch_message(t);
+                    sioc.sendEvent("fetch_message", list.toArray());
+                } catch (Exception e) {
+                    System.out.println("Error in fetching");
+                    e.printStackTrace();
+                }
             }
         });
         

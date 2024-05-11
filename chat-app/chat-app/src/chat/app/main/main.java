@@ -61,8 +61,8 @@ public class Main extends javax.swing.JFrame {
 
             @Override
             public void selectUser(Model_User_Account user) {
-            
                 home.setUser(user);
+                
                 
             }
 

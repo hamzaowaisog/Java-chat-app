@@ -9,10 +9,18 @@ import chat.app.component.Chat_Body;
 import chat.app.component.Chat_Bottom;
 import chat.app.component.Chat_Title;
 import chat.app.event.EventChat;
+import chat.app.event.EventInsertMessage;
 import chat.app.event.PublicEvent;
+import chat.app.model.Model_Data_message;
+import chat.app.model.Model_Message_Fetch;
 import chat.app.model.Model_Receive_Message;
 import chat.app.model.Model_Send_Message;
 import chat.app.model.Model_User_Account;
+import chat.app.service.Service;
+import io.socket.emitter.Emitter;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import net.miginfocom.swing.MigLayout;
 
 public class Chat extends javax.swing.JPanel {
@@ -45,6 +53,7 @@ public class Chat extends javax.swing.JPanel {
             }
             
         });
+        
         add(chatTitle,"wrap");
         add(chatBody,"wrap");
         add(chatBottom,"h ::50%");
@@ -52,12 +61,42 @@ public class Chat extends javax.swing.JPanel {
     }
 
     public void setUser(Model_User_Account user){
+        int receiverid = user.getUserId();
+        int senderid = Service.getInstance().getUser().getUserId();
+        System.out.println("Sender Id "+senderid);
+        System.out.println("Receiver Id"+receiverid);
+        
+        Model_Data_message msg = new Model_Data_message(senderid, receiverid);
+        System.out.println("Fetching message");
+        
+        Service.getInstance().getClient().emit("fetch_message", msg.toJSONObject());
+        System.out.println("fetching complete");        
+        
+        Service.getInstance().getClient().on("fetch_message",new Emitter.Listener() {
+            @Override
+            public void call(Object... os) {
+                for(Object o : os){
+                    System.out.println("msg retrieved");
+                    Model_Message_Fetch msg = new Model_Message_Fetch(o);
+                    if(msg.isIsright()){
+                        chatBody.addItemRight(msg);
+                        
+                    }
+                    else{
+                        chatBody.addItemLeft(msg);
+                    }
+                }
+                repaint();
+                revalidate();
+            }
+        });
+        
         chatTitle.setUserName(user);
         chatBottom.setUser(user);
         chatBody.clearchat();
         
     }
-    
+
     public void updateUser(Model_User_Account user){
         chatTitle.updateUser(user);
         

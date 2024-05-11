@@ -7,8 +7,11 @@ package chat.app.service;
 
 import chat.app.event.EventFileReceiver;
 import chat.app.event.PublicEvent;
+import chat.app.model.Model_Data_message;
 import chat.app.model.Model_FIle_Sender;
 import chat.app.model.Model_File_Receiver;
+import chat.app.model.Model_Message_Fetch;
+import chat.app.model.Model_Message_Insert;
 import chat.app.model.Model_Receive_Message;
 import chat.app.model.Model_Send_Message;
 import chat.app.model.Model_User_Account;
@@ -32,7 +35,8 @@ public class Service {
     private final String IP = "localhost";
     private List<Model_FIle_Sender> fileSender;
     private List<Model_File_Receiver> fileReceiver;
-    
+    private List<Model_Message_Fetch> fetchmessage;
+    private Model_Message_Insert msginsert;
     private Model_User_Account user;
 
     public Model_User_Account getUser() {
@@ -117,6 +121,19 @@ public class Service {
                 PublicEvent.getInstance().getEventMenuLeft().newUser(users);
             }
         });
+        
+//        client.on("fetch_message", new Emitter.Listener() {
+//            @Override
+//            public void call(Object... os) {
+//           
+//                List<Model_Message_Fetch> msg = new ArrayList<>();
+//                for(Object o : os){
+//                    Model_Message_Fetch u = new Model_Message_Fetch(o);
+//                    System.out.println("Message Added");
+//                    msg.add(u);
+//                }
+//            }
+//        });
         
         client.on("user_status", new Emitter.Listener() {
             @Override

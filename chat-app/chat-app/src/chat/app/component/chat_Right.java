@@ -45,6 +45,12 @@ public class Chat_Right extends javax.swing.JLayeredPane {
         String formattedTime = currentTime.format(formatter);
         txt.setTime(formattedTime);
     }
+    public void setTime (LocalTime time){
+                System.out.println(time);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
+        String formattedTime = time.format(formatter);
+        txt.setTime(formattedTime.toString());
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
